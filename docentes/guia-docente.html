@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía docente · Tecnología en Primero</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;700&family=Noto+Color+Emoji&display=swap">
+<style>
+/* Para regenerar el PDF: abrir este archivo en Chrome → Imprimir → Guardar como PDF (A4, sin márgenes extra, con gráficos de fondo) */
+@page{size:A4;margin:16mm 15mm 16mm 15mm}
+:root{--ink:#23204A;--bg:#EDE8FF;--soft:#D9D1FF;--emoji:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}
+*{box-sizing:border-box}
+body{margin:0;font-family:Nunito,"Trebuchet MS",Arial,var(--emoji);color:var(--ink);font-size:10.5pt;line-height:1.45;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3{font-family:"Baloo 2","Trebuchet MS",Arial,var(--emoji);line-height:1.1;margin:0 0 .4em}
+h2{font-size:20pt;margin-top:.2em}
+h3{font-size:13pt;margin-top:1em}
+p{margin:.3em 0 .6em}
+ul{margin:.2em 0 .6em;padding-left:1.2em}
+li{margin:.15em 0}
+.pagina{page-break-after:always;break-after:page}
+.pagina:last-child{page-break-after:auto;break-after:auto}
+.emo{font-family:var(--emoji)}
+
+/* portada */
+.portada{height:262mm;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--bg);border-radius:10mm;padding:20mm}
+.portada .grilla{display:grid;grid-template-columns:repeat(5,1fr);gap:4mm;margin-bottom:12mm}
+.portada .grilla span{width:24mm;height:24mm;border-radius:6mm;display:grid;place-items:center;font-size:14mm;font-family:var(--emoji);box-shadow:0 1.5mm 0 rgba(35,32,74,.18)}
+.portada h1{font-size:36pt;letter-spacing:.02em}
+.portada .sub{font-size:15pt;margin:0 0 10mm}
+.portada .pie{font-size:10.5pt;opacity:.75}
+
+/* tablas */
+table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:.4em 0 .8em}
+th,td{border:1px solid var(--soft);padding:4px 6px;vertical-align:top;text-align:left}
+th{background:var(--bg);font-family:"Baloo 2",Arial,sans-serif;font-size:10pt}
+td.ico{font-family:var(--emoji);font-size:14pt;text-align:center;width:9mm}
+
+/* fichas */
+.ficha{border:2px solid var(--soft);border-radius:5mm;padding:5mm 6mm;margin-bottom:6mm;break-inside:avoid;page-break-inside:avoid}
+.ficha header{display:flex;align-items:center;gap:4mm;margin:-5mm -6mm 3mm;padding:3mm 6mm;border-radius:4mm 4mm 0 0;color:#fff}
+.ficha header .i{font-size:16mm;line-height:1;font-family:var(--emoji)}
+.ficha header h3{margin:0;font-size:17pt;color:#fff}
+.ficha header .grado{margin-left:auto;background:rgba(255,255,255,.92);color:var(--ink);border-radius:99px;padding:1mm 4mm;font-weight:700;font-size:9.5pt;white-space:nowrap}
+.ficha .que{font-size:11.5pt;font-weight:700}
+.ficha dl{display:grid;grid-template-columns:30mm 1fr;gap:1.5mm 4mm;margin:2mm 0 0}
+.ficha dt{font-family:"Baloo 2",Arial,sans-serif;font-weight:800;font-size:10pt}
+.ficha dd{margin:0}
+.nota{background:#FFF5D1;border-radius:3mm;padding:3mm 4mm;font-size:9.5pt}
+.recy{display:inline-block;width:1em;height:1em;vertical-align:-.14em}
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<section class="pagina">
+  <div class="portada">
+    <div class="grilla">
+      <span style="background:#FF6B4A">🤖</span><span style="background:#22A866">♻️</span><span style="background:#2F80ED">🎨</span><span style="background:#14A89A">🔌</span><span style="background:#5B6B8C">⚙️</span>
+      <span style="background:#F0569A">🔁</span><span style="background:#3D3A6B">🔦</span><span style="background:#D97706">🎻</span><span style="background:#7C3AED">⌨️</span><span style="background:#DC2626">🦾</span>
+      <span style="background:#0891B2">📱</span><span style="background:#65A30D">🚌</span><span style="background:#A16207">🧱</span>
+    </div>
+    <h1>Tecnología en Primero</h1>
+    <p class="sub">Guía docente · 13 juegos para Jardín, 1.º y 2.º grado</p>
+    <p class="pie">Tecnologías, Diseño y Programación · Diseño Curricular CABA<br>Juegos de Luca Polti · lucapolti-docente.github.io/tecnologia-1</p>
+  </div>
+</section>
+
+<!-- CÓMO USAR -->
+<section class="pagina">
+  <h2>Cómo usar los juegos en el aula</h2>
+  <h3>Para empezar</h3>
+  <ul>
+    <li><b>Funcionan en el navegador</b>, sin instalar nada ni crear cuentas. Se abren desde la dirección publicada o, sin internet, con doble clic en <code>index.html</code>.</li>
+    <li><b>No piden datos de los chicos.</b> Solo se guarda qué juegos se completaron (las ⭐), y queda en esa computadora.</li>
+    <li>Pensados para <b>notebooks</b>: el juego ocupa toda la pantalla. En celular o tablet también andan, y la pantalla se puede deslizar.</li>
+  </ul>
+  <h3>Pantalla y menú</h3>
+  <ul>
+    <li>Al abrir aparecen las fichas de los juegos. Se toca una para jugar.</li>
+    <li>El botón <span class="emo">🏠</span> (abajo a la derecha) vuelve al inicio.</li>
+    <li>El menú <b>☰</b> (arriba a la izquierda) es para el docente: cambiar de juego, <b>saltar a cualquier nivel</b>, entrar al <b>modo libre</b>, empezar de nuevo, apagar el sonido, pantalla completa y borrar las estrellas.</li>
+    <li>Los puntitos de arriba a la derecha muestran en qué nivel están.</li>
+  </ul>
+  <h3>Pensado para quienes todavía no leen</h3>
+  <ul>
+    <li>Todo está en mayúsculas y con íconos grandes. Las consignas de Íconos, Sombras, ¿Qué necesito? y Armá el robot se escuchan en voz alta (botón <span class="emo">🔊</span> para repetir).</li>
+    <li>Si la computadora no tiene voz en castellano, aparece un aviso y el juego sigue funcionando con los dibujos.</li>
+    <li>Los errores no castigan: la pieza tiembla, suena un aviso y se puede volver a intentar. Nunca aparece "perdiste".</li>
+  </ul>
+  <h3>Sugerencias de trabajo</h3>
+  <ul>
+    <li><b>Antes de la pantalla</b>, cada ficha propone una actividad sin computadora. Jugar después de haberlo vivido con el cuerpo o con materiales ayuda mucho.</li>
+    <li><b>En parejas</b>: uno toca, el otro dice qué hacer, y cambian en cada nivel. Así se conversa la estrategia en voz alta.</li>
+    <li><b>Nivel 1</b> sirve para entender el juego y se gana casi seguro. Cada nivel agrega una sola dificultad.</li>
+    <li><b>Modo libre</b> (menú ☰): sirve para inventar y para que quienes terminan antes sigan creando.</li>
+    <li><b>Cierre</b>: cada ficha trae una o dos preguntas para conversar en ronda.</li>
+    <li><b>El premio <span class="emo">🎁</span></b> aparece en el inicio cuando se completaron los 13 juegos en esa computadora. Desde el menú se puede probar antes.</li>
+  </ul>
+  <div class="nota"><b>Para cambiar textos, niveles o personajes</b> no hace falta programar: todo está en la carpeta <code>datos/</code> del proyecto. El archivo <code>README.md</code> explica cómo.</div>
+</section>
+
+<!-- TABLA -->
+<section class="pagina">
+  <h2>Los juegos de un vistazo</h2>
+  <p>Ejes del Diseño Curricular de Tecnologías, Diseño y Programación (CABA):
+    <b>1</b> Materiales y energía · <b>2</b> Procesos tecnológicos · <b>3</b> Diseño y programación · <b>4</b> Robótica · <b>5</b> Reflexión sobre la tecnología.
+    Articulaciones: <b>ED</b> Educación Digital · <b>EAM</b> Educación Ambiental · <b>ESI</b>.</p>
+  <table>
+    <tr><th></th><th>Juego</th><th>Qué hacen</th><th>Ejes</th><th>Grado</th><th>Niveles</th><th>Libre</th></tr>
+    <tr><td class="ico">🤖</td><td>Robot</td><td>Programan con flechas el camino del robot hasta la estrella.</td><td>3 · 4</td><td>1.º y 2.º</td><td>11</td><td>✔</td></tr>
+    <tr><td class="ico">♻️</td><td>Reciclaje</td><td>Llevan cada residuo a su contenedor.</td><td>1 · EAM</td><td>Jardín a 2.º</td><td>5</td><td>✔</td></tr>
+    <tr><td class="ico">🎨</td><td>Dibujo</td><td>Copian un dibujo pintando cuadraditos.</td><td>2 · ED</td><td>Jardín a 2.º</td><td>8</td><td>✔</td></tr>
+    <tr><td class="ico">🔌</td><td>Laberinto</td><td>Llevan el cable de la pila a la lamparita.</td><td>1</td><td>Jardín a 2.º</td><td>10</td><td>✔</td></tr>
+    <tr><td class="ico">⚙️</td><td>Engranajes</td><td>Eligen ruedas del tamaño justo para que gire la hélice.</td><td>1 · 2</td><td>1.º y 2.º</td><td>8</td><td>✔</td></tr>
+    <tr><td class="ico">🔁</td><td>Secuencias</td><td>Completan patrones y encuentran el que está mal.</td><td>3</td><td>Jardín a 2.º</td><td>11</td><td>✔</td></tr>
+    <tr><td class="ico">🔦</td><td>Sombras</td><td>Unen objetos con su sombra y oficios con sus herramientas.</td><td>2 · ESI</td><td>Jardín y 1.º</td><td>9</td><td>✔</td></tr>
+    <tr><td class="ico">🎻</td><td>Instrumentos</td><td>Escuchan un sonido y eligen qué instrumento es.</td><td>2 · Música</td><td>Jardín a 2.º</td><td>6</td><td>✔</td></tr>
+    <tr><td class="ico">⌨️</td><td>Escribir</td><td>Copian palabras con el teclado.</td><td>ED</td><td>1.º y 2.º</td><td>7</td><td>✔</td></tr>
+    <tr><td class="ico">🦾</td><td>Armá el robot</td><td>Le dan al robot la pieza que necesita para cada misión.</td><td>4 · 5</td><td>1.º y 2.º</td><td>10</td><td>✔</td></tr>
+    <tr><td class="ico">📱</td><td>Íconos</td><td>Escuchan una consigna y tocan el ícono que corresponde.</td><td>2 · ED</td><td>Jardín a 2.º</td><td>6</td><td></td></tr>
+    <tr><td class="ico">🚌</td><td>¿Qué necesito?</td><td>Clasifican transporte, comunicación y energía, y eligen qué hace falta en cada situación.</td><td>1 · 2</td><td>1.º y 2.º</td><td>6</td><td></td></tr>
+    <tr><td class="ico">🧱</td><td>Torre</td><td>Sueltan bloques desde una grúa para armar una torre que no se caiga.</td><td>2</td><td>Jardín a 2.º</td><td>6</td><td></td></tr>
+    <tr><td class="ico">🎁</td><td>Premio</td><td>Inventan un personaje, le hacen decir cosas y decoran la escena.</td><td>5 · ED</td><td>Todos</td><td>—</td><td>✔</td></tr>
+  </table>
+</section>
+
+<!-- FICHAS -->
+<section class="pagina">
+  <h2>Fichas de los juegos</h2>
+
+  <div class="ficha"><header style="background:#FF6B4A"><span class="i">🤖</span><h3>Robot</h3><span class="grado">1.º y 2.º</span></header>
+    <p class="que">Arman un programa con flechas para llevar al robot hasta la estrella.</p>
+    <dl>
+      <dt>DC</dt><dd><b>Eje 3:</b> secuencias de instrucciones, repetición (bucle <span class="emo">🔁</span>) y depuración. <b>Eje 4:</b> programar movimientos de un robot. 1.º: secuencias cortas. 2.º: usar la repetición y corregir programas.</dd>
+      <dt>Cómo se juega</dt><dd>Se tocan flechas para armar el programa y <b>▶ IR</b> para ejecutarlo. <span class="emo">🔁</span> repite la última flecha. Si se llega con la menor cantidad de bloques: <span class="emo">⭐⭐⭐</span>; si no, <span class="emo">⭐⭐</span> y el juego dice con cuántos se podía.</dd>
+      <dt>Niveles</dt><dd>11. Aparecen obstáculos y grillas más grandes. Los niveles 4, 7 y 11 traen un programa con un error para arreglar (<span class="emo">🐞</span>). En modo libre se arma el propio tablero.</dd>
+      <dt>Antes</dt><dd>"Robot humano": en el piso con baldosas o cinta, un chico da órdenes con tarjetas de flechas y otro las cumple paso a paso.</dd>
+      <dt>Cierre</dt><dd>¿Cómo hicieron para usar menos bloques? ¿Qué estaba mal en el programa que arreglaron?</dd>
+    </dl></div>
+
+  <div class="ficha"><header style="background:#22A866"><span class="i">♻️</span><h3>Reciclaje</h3><span class="grado">Jardín a 2.º</span></header>
+    <p class="que">Llevan cada residuo al contenedor que corresponde.</p>
+    <dl>
+      <dt>DC</dt><dd><b>Eje 1:</b> materiales y gestión de los residuos. <b>EAM:</b> separación en origen y reciclado. Jardín: papel y plástico. 1.º y 2.º: orgánico, vidrio y basura no reciclable.</dd>
+      <dt>Cómo se juega</dt><dd>Aparece un residuo grande y se toca su contenedor. Al terminar el último nivel se ve el ciclo del plástico.</dd>
+      <dt>Niveles</dt><dd>5. Cada nivel suma un contenedor (papel, plástico, orgánico, vidrio, basura). Modo libre: se agregan cosas a una plaza que aparecen sucias, y se limpian arrastrando la basura al contenedor.</dd>
+      <dt>Antes</dt><dd>Separar en cajas residuos reales y limpios del aula (diarios, botellas, cáscaras dibujadas).</dd>
+      <dt>Cierre</dt><dd>¿Qué pasa con una botella de plástico después de que la tiramos en el contenedor correcto?</dd>
+    </dl></div>
+</section>
+
+<section class="pagina">
+  <div class="ficha"><header style="background:#2F80ED"><span class="i">🎨</span><h3>Dibujo</h3><span class="grado">Jardín a 2.º</span></header>
+    <p class="que">Copian un dibujo pintando los cuadraditos de una grilla.</p>
+    <dl>
+      <dt>DC</dt><dd><b>Eje 2:</b> representación con códigos (la imagen como cuadraditos de colores). <b>ED:</b> cómo se forman las imágenes en las pantallas (píxeles). Jardín: grillas de 3×3. 2.º: grillas de 8×8 con varios colores.</dd>
+      <dt>Cómo se juega</dt><dd>Se elige un color y se toca o arrastra sobre la grilla para copiar el modelo de al lado. <span class="emo">🧽</span> borra.</dd>
+      <dt>Niveles</dt><dd>8. Grillas más grandes y más colores. Modo libre: hoja grande con 12 colores y sellos.</dd>
+      <dt>Antes</dt><dd>Dibujo dictado en papel cuadriculado: "fila 1: blanco, rojo, blanco…".</dd>
+      <dt>Cierre</dt><dd>Si miramos una pantalla muy de cerca, ¿qué vemos? ¿Cómo le explicarían a alguien qué pintar sin mostrarle el dibujo?</dd>
+    </dl></div>
+
+  <div class="ficha"><header style="background:#14A89A"><span class="i">🔌</span><h3>Laberinto</h3><span class="grado">Jardín a 2.º</span></header>
+    <p class="que">Dibujan el cable desde la pila hasta la lamparita para que se prenda.</p>
+    <dl>
+      <dt>DC</dt><dd><b>Eje 1:</b> energía eléctrica, circuito, interruptor. Jardín: unir pila y lamparita. 2.º: el interruptor abre y cierra el circuito.</dd>
+      <dt>Cómo se juega</dt><dd>Se arrastra el dedo o el mouse por el camino libre. Desde el nivel 8 hay un interruptor en el camino que hay que prender para que la luz funcione.</dd>
+      <dt>Niveles</dt><dd>10. Laberintos más grandes; los 3 últimos con interruptor. Modo libre: se arman paredes y se prueba el cable.</dd>
+      <dt>Antes</dt><dd>Con el docente: armar un circuito real con pila, cables y lamparita (o un juguete a pilas abierto).</dd>
+      <dt>Cierre</dt><dd>¿Para qué sirve el interruptor? ¿Qué cosas de la casa tienen uno?</dd>
+    </dl></div>
+</section>
+
+<section class="pagina">
+  <div class="ficha"><header style="background:#5B6B8C"><span class="i">⚙️</span><h3>Engranajes</h3><span class="grado">1.º y 2.º</span></header>
+    <p class="que">Eligen ruedas dentadas del tamaño justo para que el motor haga girar la hélice.</p>
+    <dl>
+      <dt>DC</dt><dd><b>Eje 1:</b> transmisión del movimiento y fuentes de energía (motor, manivela, resorte). <b>Eje 2:</b> mecanismos.</dd>
+      <dt>Cómo se juega</dt><dd>Se elige la rueda chica o la grande y se toca el hueco. Si es la correcta, encaja; cuando están todas, el mecanismo gira.</dd>
+      <dt>Niveles</dt><dd>8. Cada nivel suma un hueco. Modo libre: cadena de hasta 10 ruedas con motor, manivela que se gira con el dedo o resorte al que se le da cuerda.</dd>
+      <dt>Antes</dt><dd>Mirar de cerca una bicicleta, un batidor manual o un sacapuntas a manivela.</dd>
+      <dt>Cierre</dt><dd>Si una rueda gira para un lado, ¿para dónde gira la que la toca? ¿Qué rueda gira más rápido, la grande o la chica?</dd>
+    </dl></div>
+
+  <div class="ficha"><header style="background:#F0569A"><span class="i">🔁</span><h3>Secuencias</h3><span class="grado">Jardín a 2.º</span></header>
+    <p class="que">Descubren el patrón que se repite y lo completan; al final, encuentran el que está mal.</p>
+    <dl>
+      <dt>DC</dt><dd><b>Eje 3:</b> patrones y repetición (base de los bucles) y depuración ("encontrar el error").</dd>
+      <dt>Cómo se juega</dt><dd>Se ve una fila de figuras con lugares vacíos <b>?</b> y se tocan las que siguen. En los niveles <span class="emo">🐞</span> se toca la figura equivocada.</dd>
+      <dt>Niveles</dt><dd>11. Patrones AB, AAB, ABC… luego faltan dos figuras; los 3 últimos son "¿cuál está mal?". Modo libre: se arma un patrón que se repite y suena como música.</dd>
+      <dt>Antes</dt><dd>Patrones con el cuerpo: palma-palma-pie, o filas de chicos parados y sentados.</dd>
+      <dt>Cierre</dt><dd>¿Cómo se dieron cuenta de qué venía después? ¿Dónde vemos patrones (baldosas, canciones, ropa)?</dd>
+    </dl></div>
+</section>
+
+<section class="pagina">
+  <div class="ficha"><header style="background:#3D3A6B"><span class="i">🔦</span><h3>Sombras</h3><span class="grado">Jardín y 1.º</span></header>
+    <p class="que">Unen cada objeto con su sombra y cada oficio con su herramienta.</p>
+    <dl>
+      <dt>DC</dt><dd><b>Eje 2:</b> herramientas, aparatos y oficios (quién usa qué para trabajar). <b>ESI:</b> oficios sin estereotipos de género.</dd>
+      <dt>Cómo se juega</dt><dd>Arriba aparece un objeto (o una persona con su oficio, que se escucha en voz alta) y abajo, sombras para elegir.</dd>
+      <dt>Niveles</dt><dd>9. Más sombras para elegir; los 3 últimos son de oficios. Modo libre: una pieza a oscuras que se recorre con la linterna para encontrar objetos.</dd>
+      <dt>Antes</dt><dd>Teatro de sombras con una linterna y herramientas reales sobre la pared.</dd>
+      <dt>Cierre</dt><dd>¿Una mujer puede ser bombera? ¿Un varón puede ser peluquero? ¿Qué herramienta usarían ustedes?</dd>
+    </dl></div>
+
+  <div class="ficha"><header style="background:#D97706"><span class="i">🎻</span><h3>Instrumentos</h3><span class="grado">Jardín a 2.º</span></header>
+    <p class="que">Escuchan un sonido y eligen qué instrumento lo hace.</p>
+    <dl>
+      <dt>DC</dt><dd><b>Eje 2:</b> los instrumentos como objetos tecnológicos que producen sonido. Articulación con <b>Música</b>: timbre y familias de instrumentos.</dd>
+      <dt>Cómo se juega</dt><dd>Suena un instrumento (botón <span class="emo">🔊</span> para repetir) y se toca el que corresponde. Tres por nivel. <b>Necesita parlantes o auriculares.</b></dd>
+      <dt>Niveles</dt><dd>6. Cada nivel suma opciones, hasta los 9 instrumentos. Modo libre: tocar todos.</dd>
+      <dt>Antes</dt><dd>Escuchar y tocar instrumentos reales del aula de música con los ojos cerrados.</dd>
+      <dt>Cierre</dt><dd>¿Cuál suena golpeando, cuál soplando, cuál con cuerdas?</dd>
+    </dl></div>
+</section>
+
+<section class="pagina">
+  <div class="ficha"><header style="background:#7C3AED"><span class="i">⌨️</span><h3>Escribir</h3><span class="grado">1.º y 2.º</span></header>
+    <p class="que">Copian palabras y frases cortas con el teclado.</p>
+    <dl>
+      <dt>DC</dt><dd><b>ED:</b> uso del teclado y la computadora. Articulación con Prácticas del Lenguaje.</dd>
+      <dt>Cómo se juega</dt><dd>La palabra aparece en gris y se va pintando de verde al escribirla bien (las tildes no cuentan como error). <b>🔊 LEER</b> la dice en voz alta. Arriba se elige el tamaño de letra.</dd>
+      <dt>Niveles</dt><dd>7, de LUNA a HOY APRENDO TECNOLOGÍA. Modo libre: escriben lo que quieran y la compu lo lee; con <b>🤪 LOCO</b> cambian colores y voces.</dd>
+      <dt>Antes</dt><dd>Buscar letras en un teclado de cartón o en una foto del teclado.</dd>
+      <dt>Cierre</dt><dd>¿Dónde está la barra espaciadora? ¿Por qué las letras del teclado no están en orden?</dd>
+    </dl></div>
+
+  <div class="ficha"><header style="background:#DC2626"><span class="i">🦾</span><h3>Armá el robot</h3><span class="grado">1.º y 2.º</span></header>
+    <p class="que">En cada misión, le dan al robot la pieza que necesita: batería, ruedas, cámara, brazo, parlante…</p>
+    <dl>
+      <dt>DC</dt><dd><b>Eje 4:</b> partes de un robot, sensores (cámara, micrófono, termómetro, antena) y actuadores (ruedas, brazo, hélice, parlante). <b>Eje 5:</b> para qué sirve cada tecnología.</dd>
+      <dt>Cómo se juega</dt><dd>El robot dice qué le pasa (en el globito y en voz alta) y se toca la pieza que le sirve. La pieza aparece puesta en el robot y la usa.</dd>
+      <dt>Niveles</dt><dd>10 misiones, cada una con más pasos (de 2 a 7). Modo libre: se arma el robot como se quiera y se lo pasea por un campo con objetos escondidos.</dd>
+      <dt>Antes</dt><dd>"Si fueran un robot, ¿qué necesitarían para ver? ¿y para escuchar?" Relacionar partes del cuerpo con piezas.</dd>
+      <dt>Cierre</dt><dd>¿Qué piezas sirven para <i>sentir</i> y cuáles para <i>hacer</i>? ¿Qué robots conocen de verdad?</dd>
+    </dl></div>
+</section>
+
+<section class="pagina">
+  <div class="ficha"><header style="background:#0891B2"><span class="i">📱</span><h3>Íconos</h3><span class="grado">Jardín a 2.º</span></header>
+    <p class="que">Escuchan una consigna ("SACÁ UNA FOTO") y tocan el ícono que corresponde en el celular.</p>
+    <dl>
+      <dt>DC</dt><dd><b>Eje 2:</b> lectura de íconos y símbolos en las TIC. <b>ED:</b> uso de interfaces.</dd>
+      <dt>Cómo se juega</dt><dd>La consigna se escucha y se lee arriba del celular (<span class="emo">🔊</span> la repite). Cuatro consignas por nivel.</dd>
+      <dt>Niveles</dt><dd>6. Cada nivel muestra más íconos (de 3 a 9).</dd>
+      <dt>Antes</dt><dd>Tarjetas con íconos dibujados: ¿qué pasa si toco este?</dd>
+      <dt>Cierre</dt><dd>¿Por qué el ícono de la cámara tiene ese dibujo? Inventen un ícono nuevo.</dd>
+    </dl></div>
+
+  <div class="ficha"><header style="background:#65A30D"><span class="i">🚌</span><h3>¿Qué necesito?</h3><span class="grado">1.º y 2.º</span></header>
+    <p class="que">Clasifican medios de transporte, de comunicación y fuentes de energía; después eligen qué hace falta en cada situación.</p>
+    <dl>
+      <dt>DC</dt><dd><b>Eje 1:</b> energía. <b>Eje 2:</b> medios de transporte y de comunicación como respuestas tecnológicas a necesidades.</dd>
+      <dt>Cómo se juega</dt><dd>Niveles 1 a 3: como Reciclaje, se toca el grupo de cada cosa. Niveles 4 a 6: "¿QUÉ NECESITO PARA… VER LA TELE?" se escucha y se elige la respuesta.</dd>
+      <dt>Niveles</dt><dd>6. Primero dos grupos, después tres; luego tres tandas de situaciones.</dd>
+      <dt>Antes</dt><dd>Recortar de revistas transportes y aparatos y armar tres afiches.</dd>
+      <dt>Cierre</dt><dd>¿Cómo se comunicaban antes de que existiera el celular? ¿Qué necesita energía en el aula?</dd>
+    </dl></div>
+</section>
+
+<section class="pagina">
+  <div class="ficha"><header style="background:#A16207"><span class="i">🧱</span><h3>Torre</h3><span class="grado">Jardín a 2.º</span></header>
+    <p class="que">Sueltan bloques desde una grúa para armar una torre que no se caiga.</p>
+    <dl>
+      <dt>DC</dt><dd><b>Eje 2:</b> estructuras y estabilidad (si el peso queda afuera de la base, se cae). Anticipación y coordinación.</dd>
+      <dt>Cómo se juega</dt><dd>La grúa va y viene; se toca la pantalla (o la barra espaciadora) para soltar el bloque. Abajo se elige bloque grande, mediano o chico.</dd>
+      <dt>Niveles</dt><dd>6. Torres de 3 a 8 bloques, con la grúa cada vez más rápida.</dd>
+      <dt>Antes</dt><dd>Torres con bloques, vasos o cajas: ¿cuál se cae primero? ¿y si abajo ponemos los grandes?</dd>
+      <dt>Cierre</dt><dd>¿Conviene poner los bloques grandes abajo o arriba? ¿Por qué los edificios no se caen?</dd>
+    </dl></div>
+
+  <div class="ficha"><header style="background:linear-gradient(135deg,#F0569A,#FFB800 50%,#22A866)"><span class="i">🎁</span><h3>Premio</h3><span class="grado">Todos</span></header>
+    <p class="que">Inventan un personaje mezclando un animal y un objeto, lo mueven, lo hacen hablar y decoran la escena.</p>
+    <dl>
+      <dt>DC</dt><dd><b>ED</b> y <b>Eje 5</b>: crear con la computadora y reflexionar sobre la voz sintetizada (¿quién habla cuando habla la compu?).</dd>
+      <dt>Cómo se juega</dt><dd>Aparece en el inicio cuando la computadora tiene los 13 juegos completos (también se puede abrir desde el menú). Se elige personaje, lugar y stickers; se escribe lo que dice.</dd>
+      <dt>Cierre</dt><dd>Presenten su personaje a la clase: ¿cómo se llama y qué sabe hacer?</dd>
+    </dl></div>
+
+  <div class="nota">Los personajes de todos los juegos son inventados: no hay personajes de dibujitos, marcas ni publicidad.</div>
+</section>
+
+</body>
+</html>

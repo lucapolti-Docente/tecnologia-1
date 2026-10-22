@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para docentes · Tecnología en Primero</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;700&family=Noto+Color+Emoji&display=swap">
+<style>
+:root{--bg:#EDE8FF;--ink:#23204A;--card:#FFFFFF;--soft:#D9D1FF;--ok:#22A866;
+  --emoji:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,"Trebuchet MS",Arial,var(--emoji);font-size:18px;line-height:1.5;padding:0 16px}
+main{max-width:860px;margin:0 auto;padding:32px 0 60px}
+h1,h2{font-family:"Baloo 2","Trebuchet MS",Arial,var(--emoji);line-height:1.1;margin:0 0 12px}
+h1{font-size:44px}
+h2{font-size:28px;margin-top:36px}
+.sub{font-size:20px;margin:0 0 28px;opacity:.8}
+.botones{display:flex;flex-wrap:wrap;gap:16px}
+.btn{display:flex;align-items:center;gap:14px;min-height:72px;padding:12px 26px;border-radius:24px;font-family:"Baloo 2",Arial,sans-serif;font-weight:800;font-size:24px;text-decoration:none;color:var(--ink);background:var(--card);box-shadow:0 6px 0 var(--soft)}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 var(--soft)}
+.btn:focus-visible{outline:4px solid var(--ink);outline-offset:3px}
+.btn .i{font-size:36px;font-family:var(--emoji)}
+.btn.prin{background:var(--ok);color:#fff;box-shadow:0 6px 0 #17804C}
+.btn small{display:block;font-family:Nunito,Arial,sans-serif;font-weight:400;font-size:15px;opacity:.85}
+.card{background:var(--card);border-radius:24px;padding:20px 24px;box-shadow:0 6px 0 var(--soft)}
+ul{margin:0;padding-left:1.2em}
+li{margin:6px 0}
+.juegos{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;list-style:none;padding:0}
+.juegos li{display:flex;gap:12px;align-items:flex-start;background:var(--card);border-radius:18px;padding:12px 14px;margin:0;box-shadow:0 4px 0 var(--soft);font-size:16px}
+.juegos .i{font-size:32px;line-height:1;font-family:var(--emoji)}
+.juegos b{display:block;font-family:"Baloo 2",Arial,sans-serif;font-size:19px}
+footer{margin-top:40px;font-size:15px;opacity:.7}
+</style>
+</head>
+<body>
+<main>
+  <h1>Para docentes</h1>
+  <p class="sub">Tecnología en Primero · 13 juegos para Jardín, 1.º y 2.º grado (Tecnologías, Diseño y Programación, DC CABA).</p>
+
+  <div class="botones">
+    <a class="btn prin" href="guia-docente.pdf" download><span class="i">📄</span><span>DESCARGAR LA GUÍA<small>PDF A4 con una ficha por juego</small></span></a>
+    <a class="btn" href="../index.html"><span class="i">🎮</span><span>ABRIR LOS JUEGOS<small>Funcionan en el navegador, sin instalar nada</small></span></a>
+  </div>
+
+  <h2>En pocas palabras</h2>
+  <div class="card">
+    <ul>
+      <li>Sin cuentas ni datos de los chicos: solo se guarda en esa computadora qué juegos se completaron.</li>
+      <li>El menú <b>☰</b> permite saltar a cualquier nivel, entrar al modo libre, apagar el sonido y poner pantalla completa.</li>
+      <li>Pensados para quienes todavía no leen: íconos grandes y consignas en voz alta.</li>
+      <li>Los errores no castigan: la pieza tiembla y se puede intentar de nuevo.</li>
+      <li>En la guía, cada juego trae los ejes del Diseño Curricular, una actividad sin pantalla para antes y preguntas para el cierre.</li>
+    </ul>
+  </div>
+
+  <h2>Los juegos</h2>
+  <ul class="juegos">
+    <li><span class="i">🤖</span><span><b>Robot</b>Programar con flechas y bucles.</span></li>
+    <li><span class="i">♻️</span><span><b>Reciclaje</b>Separar residuos en contenedores.</span></li>
+    <li><span class="i">🎨</span><span><b>Dibujo</b>Copiar dibujos de cuadraditos.</span></li>
+    <li><span class="i">🔌</span><span><b>Laberinto</b>Circuito de la pila a la lamparita.</span></li>
+    <li><span class="i">⚙️</span><span><b>Engranajes</b>Transmitir el movimiento.</span></li>
+    <li><span class="i">🔁</span><span><b>Secuencias</b>Patrones y encontrar el error.</span></li>
+    <li><span class="i">🔦</span><span><b>Sombras</b>Herramientas, objetos y oficios.</span></li>
+    <li><span class="i">🎻</span><span><b>Instrumentos</b>Reconocer sonidos.</span></li>
+    <li><span class="i">⌨️</span><span><b>Escribir</b>Usar el teclado.</span></li>
+    <li><span class="i">🦾</span><span><b>Armá el robot</b>Sensores y actuadores.</span></li>
+    <li><span class="i">📱</span><span><b>Íconos</b>Leer los íconos del celular.</span></li>
+    <li><span class="i">🚌</span><span><b>¿Qué necesito?</b>Transporte, comunicación y energía.</span></li>
+    <li><span class="i">🧱</span><span><b>Torre</b>Estructuras que no se caen.</span></li>
+  </ul>
+
+  <footer>Juegos de Luca Polti, docente de Tecnología y Música en primarias de CABA.</footer>
+</main>
+</body>
+</html>
