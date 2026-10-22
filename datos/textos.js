@@ -188,8 +188,6 @@ DATOS.textos = {
     personaje: "PERSONAJE",
     hacer: "HACER",
     lugar: "LUGAR Y STICKERS",
-    boton67: "6 7",
-    voz67: "six seven",
     alAzar: "AL AZAR", hablar: "HABLAR", bailar: "BAILAR", fiesta: "FIESTA",   // etiquetas
     escribiQueDice: "ESCRIBÍ LO QUE DICE",
     borrarStickers: "BORRAR STICKERS",

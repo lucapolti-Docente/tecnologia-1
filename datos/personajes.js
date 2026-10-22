@@ -39,11 +39,23 @@ DATOS.personajes = {
     figuras: [["🔴", "🔵", "🟡", "🟢"], ["🍎", "🍌", "🍇", "🍊"], ["🐱", "🐶", "🐸", "🐰"], ["⭐", "❤️", "🔷", "🌙"]]
   },
 
-  /* SOMBRAS: objetos y oficios [persona, OFICIO, herramienta] */
+  /* SOMBRAS: objetos y oficios [persona, OFICIO, herramienta]
+     Oficios sin estereotipos (ESI): mitad mujeres y mitad varones, y no en los roles "de siempre". */
   sombras: {
     objetos: ["🔨", "🔧", "✂️", "💡", "🔋", "📱", "🎧", "📷", "🔌", "🧲", "🔦", "⏰", "🚲", "✏️", "🔑", "🖱️", "🎸", "🚗"],
     nombres: { "🔨": "MARTILLO", "🔧": "LLAVE INGLESA", "✂️": "TIJERA", "💡": "LAMPARITA", "🔋": "PILA", "📱": "CELULAR", "🎧": "AURICULARES", "📷": "CÁMARA", "🔌": "ENCHUFE", "🧲": "IMÁN", "🔦": "LINTERNA", "⏰": "RELOJ", "🚲": "BICICLETA", "✏️": "LÁPIZ", "🔑": "LLAVE", "🖱️": "MOUSE", "🎸": "GUITARRA", "🚗": "AUTO" },
-    oficios: [["👨‍🍳", "COCINERO", "🍳"], ["👨‍🔧", "MECÁNICO", "🔧"], ["👩‍🎨", "PINTORA", "🖌️"], ["👨‍🚒", "BOMBERO", "🧯"], ["👩‍⚕️", "MÉDICA", "🩺"], ["💇", "PELUQUERA", "✂️"], ["👷", "CONSTRUCTOR", "🔨"], ["👩‍🌾", "GRANJERA", "🚜"], ["👩‍🏫", "MAESTRA", "📚"], ["👨‍🚀", "ASTRONAUTA", "🚀"]]
+    oficios: [
+      ["👩‍🔧", "MECÁNICA", "🔧"],
+      ["👩‍🚒", "BOMBERA", "🧯"],
+      ["👷‍♀️", "CONSTRUCTORA", "🔨"],
+      ["👩‍🚀", "ASTRONAUTA", "🚀"],
+      ["👩‍🌾", "GRANJERA", "🚜"],
+      ["👨‍🍳", "COCINERO", "🍳"],
+      ["💇‍♂️", "PELUQUERO", "✂️"],
+      ["👨‍🏫", "MAESTRO", "📚"],
+      ["👨‍⚕️", "ENFERMERO", "🩺"],
+      ["👨‍🎨", "PINTOR", "🖌️"]
+    ]
   },
 
   /* INSTRUMENTOS: dibujo y nombre (el sonido se arma en juegos/instrumentos/juego.js) */
