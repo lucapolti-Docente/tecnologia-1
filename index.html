@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tecnología en Primero</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Noto+Color+Emoji&display=swap">
+<link rel="stylesheet" href="comun/estilos.css">
+<!-- estilos de cada juego (mismo orden que los scripts de abajo) -->
+<link rel="stylesheet" href="juegos/robot/estilos.css">
+<link rel="stylesheet" href="juegos/reciclaje/estilos.css">
+<link rel="stylesheet" href="juegos/dibujo/estilos.css">
+<link rel="stylesheet" href="juegos/laberinto/estilos.css">
+<link rel="stylesheet" href="juegos/engranajes/estilos.css">
+<link rel="stylesheet" href="juegos/secuencias/estilos.css">
+<link rel="stylesheet" href="juegos/sombras/estilos.css">
+<link rel="stylesheet" href="juegos/instrumentos/estilos.css">
+<link rel="stylesheet" href="juegos/escribir/estilos.css">
+<link rel="stylesheet" href="juegos/arma-robot/estilos.css">
+<link rel="stylesheet" href="juegos/iconos/estilos.css">
+<link rel="stylesheet" href="juegos/que-necesito/estilos.css">
+<link rel="stylesheet" href="juegos/torre/estilos.css">
+<link rel="stylesheet" href="juegos/premio/estilos.css">
+</head>
+<body>
+
+<div id="app">
+  <div class="bar">
+    <button class="burger" id="burger" aria-label="MENÚ"><span></span></button>
+    <h1 id="title"></h1>
+    <div class="dots" id="dots"></div>
+  </div>
+  <div class="stage" id="stage"></div>
+</div>
+<div class="scrim" id="scrim" hidden></div>
+<nav class="menu" id="menu" hidden></nav>
+<button class="fab" id="fab" aria-label="INICIO" hidden>🏠</button>
+
+<!-- 1. DATOS: todo lo que se puede cambiar sin tocar código -->
+<script src="datos/textos.js"></script>
+<script src="datos/personajes.js"></script>
+<script src="datos/fondos.js"></script>
+<script src="datos/niveles/robot.js"></script>
+<script src="datos/niveles/reciclaje.js"></script>
+<script src="datos/niveles/dibujo.js"></script>
+<script src="datos/niveles/laberinto.js"></script>
+<script src="datos/niveles/engranajes.js"></script>
+<script src="datos/niveles/secuencias.js"></script>
+<script src="datos/niveles/sombras.js"></script>
+<script src="datos/niveles/instrumentos.js"></script>
+<script src="datos/niveles/escribir.js"></script>
+<script src="datos/niveles/arma-robot.js"></script>
+<script src="datos/niveles/iconos.js"></script>
+<script src="datos/niveles/que-necesito.js"></script>
+<script src="datos/niveles/torre.js"></script>
+
+<!-- 2. NÚCLEO compartido -->
+<script src="comun/nucleo.js"></script>
+<script src="comun/sonido.js"></script>
+<script src="comun/voz.js"></script>
+<script src="comun/estrellas.js"></script>
+<script src="comun/victoria.js"></script>
+<script src="comun/menu.js"></script>
+<script src="comun/clasificar.js"></script>
+
+<!-- 3. JUEGOS: el orden de estas líneas es el orden de las fichas en el inicio -->
+<script src="juegos/robot/juego.js"></script>
+<script src="juegos/reciclaje/juego.js"></script>
+<script src="juegos/dibujo/juego.js"></script>
+<script src="juegos/laberinto/juego.js"></script>
+<script src="juegos/engranajes/juego.js"></script>
+<script src="juegos/secuencias/juego.js"></script>
+<script src="juegos/sombras/juego.js"></script>
+<script src="juegos/instrumentos/juego.js"></script>
+<script src="juegos/escribir/juego.js"></script>
+<script src="juegos/arma-robot/juego.js"></script>
+<script src="juegos/iconos/juego.js"></script>
+<script src="juegos/que-necesito/juego.js"></script>
+<script src="juegos/torre/juego.js"></script>
+<script src="juegos/premio/juego.js"></script>
+<!-- juegos desactivados (ver README): luz y orden -->
+
+<!-- 4. ARRANQUE: siempre al final -->
+<script src="comun/arranque.js"></script>
+</body>
+</html>

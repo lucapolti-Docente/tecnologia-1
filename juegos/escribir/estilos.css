@@ -1,0 +1,23 @@
+/* ESCRIBIR (la barra de botones usa .tbar y .tbtn de comun/estilos.css) */
+.typer{position:relative;width:100%;height:100%;min-height:55vh;background:var(--card);border-radius:30px;box-shadow:0 8px 0 var(--soft)}
+.typer .scroll{position:absolute;top:0;right:0;bottom:0;left:0;overflow:auto;padding:24px 32px}
+.typer textarea{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;opacity:0;resize:none;border:0;font-size:16px;cursor:text;z-index:2}
+.txt{font-weight:800;line-height:1.2;letter-spacing:.04em;color:var(--ink);word-break:break-all}
+.txt span{display:inline-block;min-width:.3em}
+.size0{font-size:clamp(32px,6vh,56px)}.size1{font-size:clamp(56px,11vh,110px)}.size2{font-size:clamp(90px,18vh,180px)}
+.loco span:last-of-type{animation:pop .3s}
+.caret{display:inline-block;width:.08em;height:.95em;background:var(--ink);vertical-align:-.1em;margin-left:.04em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hint{opacity:.25}
+.txt .ghost{color:#C4BDE6}
+.txt .ok{color:var(--ok)}
+.txt .bad{color:var(--bad);text-decoration:underline}
+
+.typewrap{display:flex;flex-direction:column;gap:14px;width:100%;height:100%}
+.tbtn[data-t="clear"]{font-size:34px}
+.typewrap .typer{flex:1;min-height:0}
+
+@media (max-width:700px),(max-height:500px){
+  .typer .scroll{padding:16px}
+  .typewrap{height:auto}.typewrap .typer{flex:none;height:55vh}
+}

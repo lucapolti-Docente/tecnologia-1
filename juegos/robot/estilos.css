@@ -1,0 +1,22 @@
+/* ROBOT (la grilla y las herramientas usan .grid, .cell y .tools de comun/estilos.css) */
+.robot{display:flex;gap:28px;align-items:center;justify-content:center;flex-wrap:wrap;width:100%;height:100%}
+.editing .cell{cursor:pointer}
+.ctrl{display:flex;flex-direction:column;gap:16px;align-items:center}
+.arrows{display:grid;grid-template-columns:repeat(3,var(--btn));grid-template-rows:repeat(3,var(--btn));gap:10px}
+.arrows button{border-radius:20px;background:var(--robot);color:#fff;font-size:calc(var(--btn)*.55);font-weight:800;box-shadow:0 6px 0 #C9472C}
+.arrows button:active{transform:translateY(4px);box-shadow:0 2px 0 #C9472C}
+.seq{display:flex;flex-wrap:wrap;gap:8px;background:var(--card);border-radius:20px;padding:10px;min-height:calc(var(--btn)*.6 + 20px);width:calc(var(--btn)*3 + 20px + 120px);max-width:100%;align-content:flex-start}
+.seq b{width:calc(var(--btn)*.6);height:calc(var(--btn)*.6);border-radius:12px;background:var(--robot);color:#fff;display:grid;place-items:center;font-size:calc(var(--btn)*.38)}
+.seq b.now{background:var(--ink)}
+.go{display:flex;gap:12px}
+.go .run{background:var(--ok);color:#fff;box-shadow:0 6px 0 #17804C}
+.arrows .loop{background:#8E5BE8;box-shadow:0 6px 0 #6A3FC0}
+.seq b{position:relative}
+.seq b sup{position:absolute;right:-8px;top:-10px;background:var(--ink);color:#fff;border-radius:10px;font-size:max(14px,calc(var(--btn)*.22));padding:1px 6px;line-height:1.2;font-family:var(--display)}
+
+@media (max-width:700px),(max-height:500px){
+  .robot{height:auto}
+  .arrows{grid-template-columns:repeat(3,72px);grid-template-rows:repeat(3,72px)}
+  .arrows button{font-size:38px}
+  .seq b{width:44px;height:44px;font-size:26px}
+}

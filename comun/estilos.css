@@ -1,0 +1,152 @@
+/* ESTILOS COMUNES: colores, barra, inicio, menú, botones y piezas que usan varios juegos.
+   Layout: una pantalla fija, barra superior con menú hamburguesa, el juego ocupa todo lo demás */
+:root{
+  --bg:#EDE8FF; --ink:#23204A; --card:#FFFFFF; --soft:#D9D1FF;
+  --robot:#FF6B4A; --reci:#22A866; --dibu:#2F80ED; --luz:#FFB800;
+  --ok:#22A866; --bad:#E5484D;
+  --display:"Baloo 2","Trebuchet MS",Arial,Helvetica,"Liberation Sans","Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif;
+  color-scheme:light;
+}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--display);text-transform:uppercase;overflow-x:hidden;overflow-y:auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));box-sizing:border-box;
+  user-select:none;-webkit-user-select:none}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+button{font-family:inherit;text-transform:uppercase;color:var(--ink);cursor:pointer;border:0}
+button:focus-visible{outline:4px solid var(--ink);outline-offset:3px}
+#app{height:100%;display:flex;flex-direction:column}
+.bar{display:flex;align-items:center;gap:16px;padding-block:12px;min-height:84px}
+.burger{width:64px;height:64px;border-radius:18px;background:var(--card);display:grid;place-items:center;box-shadow:0 4px 0 var(--soft);flex:none}
+.burger span{display:block;width:30px;height:5px;border-radius:3px;background:var(--ink);box-shadow:0 10px 0 var(--ink),0 -10px 0 var(--ink)}
+.bar h1{margin:0;font-size:clamp(28px,4.5vh,48px);font-weight:800;letter-spacing:.04em;line-height:1;flex:1;min-width:0}
+.dots{display:flex;gap:10px;align-items:center}
+.dots i{width:22px;height:22px;border-radius:50%;background:var(--soft)}
+.dots i.on{background:var(--c,var(--ink))}
+.chip{background:var(--ink);color:#fff;border-radius:999px;padding:6px 18px;font-size:24px;font-weight:800;letter-spacing:.06em}
+.stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding-bottom:16px;position:relative}
+
+/* inicio */
+.home{--gap:clamp(12px,2.2vh,24px);display:flex;flex-wrap:wrap;justify-content:center;align-content:stretch;gap:var(--gap);width:min(100%,1200px);height:100%;max-height:820px}
+.home .tile{flex:0 0 calc((100% - 4 * var(--gap)) / 5);height:calc((100% - 2 * var(--gap)) / 3);text-align:center;line-height:1.05;padding:0 8px}
+.fab{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:15;width:84px;height:84px;border-radius:50%;background:var(--ink);font-size:42px;line-height:1;display:grid;place-items:center;box-shadow:0 6px 0 rgba(35,32,74,.3)}
+.fab:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(35,32,74,.3)}
+.tile{border-radius:30px;background:var(--c);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:0;
+  box-shadow:0 8px 0 rgba(35,32,74,.18);transition:transform .15s;color:#fff;font-weight:800;font-size:clamp(17px,2.8vh,32px);letter-spacing:.02em}
+.tile{position:relative}
+.recy{display:inline-block;vertical-align:-.14em}
+.tile .ico .recy{display:block;margin:0 auto;width:1em;height:1em}
+.badge{position:absolute;top:6px;right:10px;font-size:clamp(30px,5.5vh,54px);line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;filter:drop-shadow(0 3px 0 rgba(35,32,74,.3));animation:pop .6s}
+.tile:hover{transform:translateY(-4px) rotate(-1deg)}
+.tile .ico{font-size:clamp(36px,7vh,92px);line-height:1;display:block;width:100%;text-align:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+.bin .bi,.item,.opt,.cell,.seq b{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",var(--display)}
+
+/* menú */
+.scrim{position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(35,32,74,.45);z-index:20}
+.menu{position:fixed;top:0;left:0;bottom:0;width:min(420px,92vw);background:var(--card);z-index:21;overflow:auto;
+  padding:calc(20px + env(safe-area-inset-top,0px)) 24px calc(20px + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px));
+  display:flex;flex-direction:column;gap:18px}
+.menu h2{margin:8px 0 0;font-size:20px;letter-spacing:.12em;opacity:.6}
+.menu .row{display:flex;flex-wrap:wrap;gap:10px}
+.mbtn{background:var(--bg);border-radius:16px;padding:12px 18px;font-size:24px;font-weight:800;display:flex;align-items:center;gap:10px}
+.mbtn.big{width:100%}
+.mbtn.sel{background:var(--ink);color:#fff}
+.lvl{width:64px;height:64px;justify-content:center;font-size:30px;padding:0}
+.close{align-self:flex-end;width:56px;height:56px;border-radius:50%;background:var(--bg);font-size:30px;font-weight:800}
+
+/* comunes */
+.big-btn{border-radius:24px;font-weight:800;font-size:clamp(26px,4vh,40px);padding:12px 26px;background:var(--card);box-shadow:0 6px 0 var(--soft)}
+.big-btn:active{transform:translateY(4px);box-shadow:0 2px 0 var(--soft)}
+.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-12px)}40%,80%{transform:translateX(12px)}}
+.pop{animation:pop .35s}
+@keyframes pop{50%{transform:scale(1.15)}}
+@keyframes rot{to{transform:rotate(360deg)}}
+
+/* grilla de cuadraditos (robot y dibujo) */
+.grid{display:grid;gap:6px;background:var(--soft);padding:6px;border-radius:24px}
+.cell{width:var(--cell);height:var(--cell);border-radius:14px;background:var(--card);display:grid;place-items:center;font-size:calc(var(--cell)*.62);line-height:1}
+/* herramientas para elegir (robot libre y laberinto libre) */
+.tools{display:flex;gap:10px}
+.tools button{width:calc(var(--btn)*.85);height:calc(var(--btn)*.85);border-radius:18px;background:var(--card);font-size:calc(var(--btn)*.5);box-shadow:0 5px 0 var(--soft);border:5px solid transparent}
+.tools button.sel{border-color:var(--ink)}
+
+/* clasificar (reciclaje y ¿qué necesito?) y puntitos de progreso */
+.reci{display:flex;flex-direction:column;align-items:center;justify-content:space-between;height:100%;width:100%;gap:16px}
+.item{font-size:min(26vh,200px);line-height:1;background:var(--card);border-radius:40px;padding:20px 40px;box-shadow:0 8px 0 var(--soft)}
+.prog{display:flex;gap:8px}
+.prog i{width:18px;height:18px;border-radius:50%;background:var(--soft)}
+.prog i.on{background:var(--reci)}
+.bins{display:flex;gap:clamp(12px,2vw,28px);justify-content:center;flex-wrap:wrap;width:100%}
+.bin{width:clamp(130px,19vw,240px);aspect-ratio:1/1.05;max-width:100%;border-radius:22px 22px 40px 40px;background:var(--c);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-size:clamp(20px,2.6vh,30px);font-weight:800;box-shadow:0 8px 0 rgba(35,32,74,.25);position:relative;padding-top:18px}
+.bin::before{content:"";position:absolute;top:-14px;left:-6px;right:-6px;height:26px;border-radius:12px;background:var(--c);filter:brightness(.82)}
+.bin .bi{font-size:clamp(44px,7vh,80px);line-height:1}
+.bin.ama{color:var(--ink)}
+
+/* columna con fila de figuras y opciones (secuencias, sombras, íconos, ¿qué necesito?, torre) */
+.col{display:flex;flex-direction:column;align-items:center;justify-content:space-around;gap:28px;width:100%;height:100%}
+.line{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;background:var(--card);border-radius:30px;padding:16px 20px;box-shadow:0 8px 0 var(--soft);max-width:100%}
+.line span{font-size:var(--e);width:calc(var(--e)*1.3);height:calc(var(--e)*1.3);display:grid;place-items:center;line-height:1;border-radius:18px}
+.line span.q{background:var(--bg);font-weight:800;color:var(--ink);font-size:calc(var(--e)*.7)}
+.opts{display:flex;gap:clamp(12px,2vw,28px);flex-wrap:wrap;justify-content:center}
+.opt{font-size:var(--o);width:calc(var(--o)*1.5);height:calc(var(--o)*1.5);border-radius:28px;background:var(--card);box-shadow:0 8px 0 var(--soft);display:grid;place-items:center;line-height:1}
+.opt:active{transform:translateY(4px);box-shadow:0 3px 0 var(--soft)}
+.target{font-size:var(--e);line-height:1;background:var(--card);border-radius:36px;padding:14px 34px;box-shadow:0 8px 0 var(--soft)}
+.dark{filter:brightness(0) opacity(.85)}
+
+/* bandeja de botones grandes (engranajes y torre) */
+.tray{display:flex;gap:20px}
+.tray button{width:120px;height:120px;border-radius:26px;background:var(--card);box-shadow:0 6px 0 var(--soft);border:6px solid transparent;display:grid;place-items:center}
+.tray button.sel{border-color:var(--ink)}
+
+/* opción con dibujo y nombre (instrumentos, armá el robot, ¿qué necesito?) */
+.opt.ins{flex-direction:column;display:flex;align-items:center;justify-content:center;gap:4px;height:auto;padding:14px 0 10px}
+.opt.ins small{font-size:max(15px,calc(var(--o)*.2));font-weight:800;letter-spacing:.04em}
+
+/* barra de botones (escribir, modos libres) y avisos */
+.tbar{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.tbtn{min-width:72px;height:72px;border-radius:20px;background:var(--card);font-weight:800;box-shadow:0 5px 0 var(--soft);border:5px solid transparent;line-height:1;padding:0 10px}
+.tbtn.wide{font-size:26px;padding:0 18px}
+.toast{position:fixed;left:50%;bottom:calc(120px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:30;background:var(--ink);color:#fff;border-radius:18px;padding:14px 22px;font-size:22px;font-weight:800;text-align:center;max-width:calc(100% - 32px)}
+.tbtn.say{background:#D97706;color:#fff}
+.tbtn.sel{border-color:var(--ink);background:#FFE9A0}
+.line span.now{background:#FFE9A0;transform:scale(1.12)}
+
+/* agregados */
+.bugtag{font-weight:800;font-size:20px;background:#FFE9A0;border-radius:14px;padding:6px 14px;text-align:center}
+.bugtag.big{font-size:clamp(24px,4vh,40px);padding:10px 22px}
+.win .star.multi{font-size:min(14vh,110px);letter-spacing:.05em}
+.win .note{font-size:clamp(20px,3.4vh,32px);font-weight:800;background:#fff;border-radius:18px;padding:10px 20px;text-align:center}
+.target{text-align:center}
+.target small.who{display:block;font-size:max(18px,calc(var(--e)*.2));font-weight:800;margin-top:6px;font-family:var(--display)}
+.opt.sel{outline:6px solid var(--ink);outline-offset:2px}
+.opt.used{opacity:.2}
+.tray button.sel{border-color:var(--ink)}
+
+/* ganaste */
+.win{position:absolute;top:0;right:0;bottom:0;left:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;background:rgba(237,232,255,.92);z-index:12;border-radius:30px}
+.win .star{font-size:min(22vh,180px);line-height:1;animation:pop .6s}
+.win h2{margin:0;font-size:clamp(40px,8vh,80px);font-weight:800;letter-spacing:.05em}
+.win .row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.win .next{background:var(--ok);color:#fff;box-shadow:0 6px 0 #17804C}
+
+/* celular / pantallas chicas: se puede scrollear (cada juego tiene sus reglas al final de su estilos.css) */
+@media (max-width:700px),(max-height:500px){
+  #app{height:auto;min-height:100%}
+  .stage{flex:none;padding-block:8px 32px}
+  .home{grid-template-columns:1fr 1fr;height:auto;max-height:none}
+  .tile{min-height:150px;font-size:20px}
+  .home .tile{flex-basis:calc((100% - var(--gap)) / 2);height:auto}
+  .fab{width:68px;height:68px;font-size:34px}
+  .stage{padding-bottom:110px}
+  .tile .ico{font-size:58px}
+  .tray button{width:96px;height:96px}
+  .bar{min-height:72px}
+  .dots{gap:6px}.dots i{width:14px;height:14px}.chip{font-size:18px;padding:4px 12px}
+  .item{font-size:110px;padding:12px 28px}
+  .bin{width:calc(50% - 8px);aspect-ratio:auto;height:120px}
+  .reci{height:auto;gap:28px}
+  .tools button{width:64px;height:64px;font-size:34px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

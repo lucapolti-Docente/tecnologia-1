@@ -1,0 +1,10 @@
+/* LABERINTO (el modo libre usa .tools de comun/estilos.css) */
+.maze{position:relative;border-radius:14px;overflow:hidden;touch-action:none;box-shadow:0 8px 0 var(--soft);cursor:pointer}
+.maze > div{position:absolute;width:var(--cell);height:var(--cell);background:var(--card);display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:calc(var(--cell)*.68);line-height:1;font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}
+.maze .w{background:var(--ink)}
+.maze .p{background:#FFE9A0}
+.maze.lit .p{background:var(--luz)}
+.maze.lit .goal{filter:drop-shadow(0 0 10px var(--luz));animation:pop .6s}
+.maze .swc{cursor:pointer}
+.maze .need{animation:shake .4s,pulse .8s 2}
+@keyframes pulse{50%{background:#FFB3B5}}

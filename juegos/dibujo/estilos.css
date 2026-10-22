@@ -1,0 +1,20 @@
+/* DIBUJO (la grilla usa .grid y .cell de comun/estilos.css) */
+.dibu{display:flex;gap:28px;align-items:center;justify-content:center;flex-wrap:wrap;width:100%;height:100%}
+.model{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:24px;font-weight:800}
+.model .grid{gap:3px;padding:4px;border-radius:14px}
+.model .cell{border-radius:5px}
+.paint{touch-action:none}
+.paint .cell{cursor:pointer;border-radius:10px}
+.paint.fine{gap:2px;padding:4px;border-radius:12px}
+.paint.fine .cell{border-radius:3px}
+.pal{display:flex;flex-direction:column;gap:12px}
+.pal.two{display:grid;grid-template-columns:repeat(2,var(--btn))}
+.pal button{width:var(--btn);height:var(--btn);border-radius:50%;box-shadow:0 5px 0 rgba(35,32,74,.2);border:6px solid transparent}
+.pal button.sel{border-color:var(--ink);transform:scale(1.08)}
+.pal .eraser{background:var(--card);font-size:calc(var(--btn)*.45)}
+
+@media (max-width:700px),(max-height:500px){
+  .dibu{height:auto}
+  .pal,.pal.two{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center}
+  .pal button{width:56px;height:56px}
+}

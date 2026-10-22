@@ -1,0 +1,8 @@
+/* ¿QUÉ NECESITO? (los niveles de clasificar usan los estilos de comun/estilos.css) */
+.sitcard{background:#fff;border-radius:30px;padding:18px 26px;box-shadow:0 8px 0 var(--soft);display:flex;flex-direction:column;align-items:center;gap:10px;max-width:100%}
+.sitpic{display:flex;align-items:center;gap:16px;font-size:var(--e);line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+.sitpic .plus{font-size:.4em;opacity:.4;font-family:var(--display);font-weight:800}
+.sitpic .ans{width:1.2em;height:1.2em;border-radius:24px;background:var(--bg);display:grid;place-items:center;font-size:.8em}
+.sitpic .ans.got{background:#C8F2D8;animation:pop .5s}
+.sittxt{display:flex;align-items:center;gap:12px;font-weight:800;font-size:clamp(20px,3.4vh,34px);text-align:center}
+.sittxt button{width:52px;height:52px;border-radius:50%;background:#D97706;color:#fff;font-size:26px;flex:none}

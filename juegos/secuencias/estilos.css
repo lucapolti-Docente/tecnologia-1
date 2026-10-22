@@ -1,0 +1,3 @@
+/* SECUENCIAS (la fila y las opciones usan .line y .opt de comun/estilos.css) */
+.line .tap{cursor:pointer;background:var(--bg)}
+.line .fixed{background:#C8F2D8}

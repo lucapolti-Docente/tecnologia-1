@@ -1,0 +1,3 @@
+/* TORRE (la bandeja de bloques usa .tray de comun/estilos.css) */
+.fall{transform-box:fill-box;transform-origin:center;animation:fallaway .9s ease-in forwards}
+@keyframes fallaway{to{transform:translate(var(--dx),520px) rotate(var(--rot,40deg));opacity:0}}
