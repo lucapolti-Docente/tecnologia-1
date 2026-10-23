@@ -5,7 +5,7 @@ const PBG=FONDOS.premio.escenarios;
 let prem={a:0,o:0,bg:0};
 function premio(){
   const T=TEXTOS.premio;
-  const a=area();const H=a.n?380:Math.max(280,a.h-270);const u=Math.max(40,Math.min(90,H/4.2));
+  const tam=()=>{const a=area();const H=a.n?300:Math.max(280,a.h-330);return{H,u:Math.max(40,Math.min(90,H/4.2))}};const{H,u}=tam();
   stage.innerHTML=`<div class="prem" style="--u:${u}px">
     <div class="pscene bg-${PBG[prem.bg][1]}" id="ps" style="height:${H}px"><div class="pbub" id="pb"></div><div class="pchar" id="pc"><span class="pa"></span><span class="po"></span></div></div>
     <div class="prow2">
@@ -24,10 +24,15 @@ function premio(){
     $("#pa").querySelectorAll("button").forEach((b,i)=>b.classList.toggle("sel",i===prem.a));$("#po").querySelectorAll("button").forEach((b,i)=>b.classList.toggle("sel",i===prem.o));
     $("#pbg").querySelectorAll("[data-b]").forEach((b,i)=>b.classList.toggle("sel",i===prem.bg));
     $("#pst").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b.dataset.s===sticker))};
-  const place=()=>{pc.style.left=cx+"%";pc.style.bottom=cy+"%"};
+  /* límites en % para que el personaje (con su objeto) quede entero dentro de la escena */
+  const lim=()=>{const W=ps.clientWidth,Hh=ps.clientHeight,r=pc.getBoundingClientRect(),o=pc.querySelector(".po").getBoundingClientRect(),w=Math.max(r.right,o.right)-r.left,h=r.bottom-Math.min(r.top,o.top);
+    return{x0:(w/2+6)/W*100,x1:100-(w/2+6)/W*100,y0:4,y1:Math.max(4,100-(h+8)/Hh*100)}};
+  const encerrar=()=>{const l=lim();cx=Math.max(l.x0,Math.min(l.x1,cx));cy=Math.max(l.y0,Math.min(l.y1,cy))};
+  const place=()=>{encerrar();pc.style.left=cx+"%";pc.style.bottom=cy+"%"};
   const anim=c=>{pc.classList.remove("dance","jump","spin","bob");void pc.offsetWidth;pc.classList.add(c)};
-  const intro=()=>{drawChar();anim("jump");say(fmt(T.soy,{x:name()}),name());beep(660,.1)};
-  place();intro();
+  const intro=()=>{drawChar();place();anim("jump");say(fmt(T.soy,{x:name()}),name());beep(660,.1)};
+  intro();
+  alCambiarTamano(()=>{const t=tam();stage.querySelector(".prem").style.setProperty("--u",t.u+"px");ps.style.height=t.H+"px";place()});
   $("#pa").onclick=e=>{const b=e.target.closest("button");if(!b)return;prem.a=+b.dataset.a;intro()};
   $("#po").onclick=e=>{const b=e.target.closest("button");if(!b)return;prem.o=+b.dataset.o;intro()};
   $("#pbg").onclick=e=>{const b=e.target.closest("button");if(!b)return;
@@ -38,7 +43,7 @@ function premio(){
   ps.addEventListener("pointerdown",e=>{if(e.target.closest(".pchar"))return;const r=ps.getBoundingClientRect();
     const x=(e.clientX-r.left)/r.width*100,y=100-(e.clientY-r.top)/r.height*100;
     if(sticker){const s=document.createElement("span");s.className="pstk pop";s.textContent=sticker;s.style.left=x+"%";s.style.bottom=y+"%";ps.appendChild(s);beep(700+Math.random()*300,.06);return}
-    cx=Math.max(6,Math.min(94,x));cy=Math.max(4,Math.min(70,y-8));place();anim("bob");beep(300,.06,"square")});
+    cx=x;cy=y-8;place();anim("bob");beep(300,.06,"square")});
   const conf=n=>{for(let i=0;i<n;i++){const s=document.createElement("span");s.className="conf";s.textContent=["🎉","⭐","✨","🎊","💥"][i%5];s.style.left=Math.random()*100+"%";s.style.animationDelay=Math.random()*.4+"s";ps.appendChild(s);later(()=>s.remove(),2200)}};
   $("#pac").onclick=e=>{const b=e.target.closest("button");if(!b)return;
     if(b.dataset.i){playIns(b.dataset.i);anim("dance");say(T.musica);return}
@@ -50,7 +55,7 @@ function premio(){
   };
   $("#pt").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();$("#pac").querySelector('[data-x="hablar"]').click()}});
   document.onkeydown=e=>{if(cur!=="premio"||!$("#menu").hidden||document.activeElement===$("#pt"))return;
-    const d={ArrowLeft:[-6,0],ArrowRight:[6,0],ArrowUp:[0,6],ArrowDown:[0,-6]}[e.key];if(d){e.preventDefault();cx=Math.max(6,Math.min(94,cx+d[0]));cy=Math.max(4,Math.min(70,cy+d[1]));place();beep(300,.05,"square")}};
+    const d={ArrowLeft:[-6,0],ArrowRight:[6,0],ArrowUp:[0,6],ArrowDown:[0,-6]}[e.key];if(d){e.preventDefault();cx+=d[0];cy+=d[1];place();beep(300,.05,"square")}};
 }
 
 registrar("premio",{iniciar:premio,oculto:true,sinNiveles:true});
