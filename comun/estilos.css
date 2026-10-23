@@ -151,6 +151,7 @@ button:focus-visible{outline:4px solid var(--ink);outline-offset:3px}
 /* celular / pantallas chicas: se puede scrollear (cada juego tiene sus reglas al final de su estilos.css) */
 @media (max-width:700px),(max-height:500px){
   #app{height:auto;min-height:100%}
+  body{overflow-x:hidden} /* las animaciones "pop" agrandan un instante y no tienen que mover la página de costado */
   .stage{flex:none;padding-block:8px 32px}
   .home{grid-template-columns:1fr 1fr;height:auto;max-height:none}
   .tile{min-height:150px;font-size:20px}

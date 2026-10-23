@@ -97,7 +97,8 @@ Usá personajes inventados: nada de dibujitos, marcas ni memes.
    ```
 
 Herramientas del núcleo para usar en un juego: `area()` (espacio disponible), `shuffle()`, `later(fn, ms)`,
-`good()` / `bad()` / `beep()` (sonidos), `shakeEl(el)` (error amable), `sayQuiet(texto)` (voz), `win()`.
+`good()` / `bad()` / `beep()` (sonidos), `shakeEl(el)` (error amable), `sayQuiet(texto)` (voz), `win()`,
+`pista(el)` (hace titilar la respuesta tras dos errores) y `alCambiarTamano(fn)` (recalcula tamaños si se achica la ventana, sin reiniciar el juego).
 
 ### Juegos guardados sin activar: Luz y Ordenar
 

@@ -78,12 +78,13 @@ td.ico{font-family:var(--emoji);font-size:14pt;text-align:center;width:9mm}
   <ul>
     <li>Al abrir aparecen las fichas de los juegos. Se toca una para jugar.</li>
     <li>El botón <span class="emo">🏠</span> (abajo a la derecha) vuelve al inicio.</li>
-    <li>El menú <b>☰</b> (arriba a la izquierda) es para el docente: cambiar de juego, <b>saltar a cualquier nivel</b>, entrar al <b>modo libre</b>, empezar de nuevo, apagar el sonido, pantalla completa y borrar las estrellas.</li>
+    <li>El menú <b>☰</b> (arriba a la izquierda) es para el docente: cambiar de juego, <b>saltar a cualquier nivel</b>, entrar al <b>modo libre</b>, empezar de nuevo, apagar el sonido, pantalla completa y borrar las estrellas (hay que <b>mantener apretado</b> el botón un par de segundos, así no se borran sin querer).</li>
     <li>Los puntitos de arriba a la derecha muestran en qué nivel están.</li>
   </ul>
   <h3>Pensado para quienes todavía no leen</h3>
   <ul>
-    <li>Todo está en mayúsculas y con íconos grandes. Las consignas de Íconos, Sombras, ¿Qué necesito? y Armá el robot se escuchan en voz alta (botón <span class="emo">🔊</span> para repetir).</li>
+    <li>Todo está en mayúsculas y con íconos grandes. Las consignas se escuchan en voz alta: en Íconos, Sombras, ¿Qué necesito?, Armá el robot, Reciclaje, Dibujo, Escribir y otros. En Íconos y ¿Qué necesito? hay un botón para volver a escucharla.</li>
+    <li>Si se equivocan <b>dos veces seguidas</b>, la respuesta correcta titila suavemente como pista y la consigna se repite.</li>
     <li>Si la computadora no tiene voz en castellano, aparece un aviso y el juego sigue funcionando con los dibujos.</li>
     <li>Los errores no castigan: la pieza tiembla, suena un aviso y se puede volver a intentar. Nunca aparece "perdiste".</li>
   </ul>
@@ -94,7 +95,7 @@ td.ico{font-family:var(--emoji);font-size:14pt;text-align:center;width:9mm}
     <li><b>Nivel 1</b> sirve para entender el juego y se gana casi seguro. Cada nivel agrega una sola dificultad.</li>
     <li><b>Modo libre</b> (menú ☰): sirve para inventar y para que quienes terminan antes sigan creando.</li>
     <li><b>Cierre</b>: cada ficha trae una o dos preguntas para conversar en ronda.</li>
-    <li><b>El premio <span class="emo">🎁</span></b> aparece en el inicio cuando se completaron los 13 juegos en esa computadora. Desde el menú se puede probar antes.</li>
+    <li><b>El premio <span class="emo">🎁</span></b> aparece en el inicio cuando se completaron los 13 juegos en esa computadora. Hasta entonces no aparece en la lista de juegos; el docente lo puede probar antes con <b>🎁 PROBAR EL PREMIO</b> del menú.</li>
   </ul>
   <div class="nota"><b>Para cambiar textos, niveles o personajes</b> no hace falta programar: todo está en la carpeta <code>datos/</code> del proyecto. El archivo <code>README.md</code> explica cómo.</div>
 </section>
@@ -132,7 +133,7 @@ td.ico{font-family:var(--emoji);font-size:14pt;text-align:center;width:9mm}
     <p class="que">Arman un programa con flechas para llevar al robot hasta la estrella.</p>
     <dl>
       <dt>DC</dt><dd><b>Eje 3:</b> secuencias de instrucciones, repetición (bucle <span class="emo">🔁</span>) y depuración. <b>Eje 4:</b> programar movimientos de un robot. 1.º: secuencias cortas. 2.º: usar la repetición y corregir programas.</dd>
-      <dt>Cómo se juega</dt><dd>Se tocan flechas para armar el programa y <b>▶ IR</b> para ejecutarlo. <span class="emo">🔁</span> repite la última flecha. Si se llega con la menor cantidad de bloques: <span class="emo">⭐⭐⭐</span>; si no, <span class="emo">⭐⭐</span> y el juego dice con cuántos se podía.</dd>
+      <dt>Cómo se juega</dt><dd>Se tocan flechas para armar el programa y <b>▶ IR</b> para ejecutarlo. <span class="emo">🔁</span> repite la última flecha. Si se llega con la menor cantidad de bloques: <span class="emo">⭐⭐⭐</span>; si no, <span class="emo">⭐⭐</span> y el juego dice con cuántos se podía. Se gana solo si el programa <b>termina</b> en la estrella (si se pasa, no vale). Si choca, aparece <span class="emo">💥</span> donde chocó. <span class="emo">🗑️</span> borra el programa y tocar un bloque lo saca.</dd>
       <dt>Niveles</dt><dd>11. Aparecen obstáculos y grillas más grandes. Los niveles 4, 7 y 11 traen un programa con un error para arreglar (<span class="emo">🐞</span>). En modo libre se arma el propio tablero.</dd>
       <dt>Antes</dt><dd>"Robot humano": en el piso con baldosas o cinta, un chico da órdenes con tarjetas de flechas y otro las cumple paso a paso.</dd>
       <dt>Cierre</dt><dd>¿Cómo hicieron para usar menos bloques? ¿Qué estaba mal en el programa que arreglaron?</dd>
@@ -164,7 +165,7 @@ td.ico{font-family:var(--emoji);font-size:14pt;text-align:center;width:9mm}
     <p class="que">Dibujan el cable desde la pila hasta la lamparita para que se prenda.</p>
     <dl>
       <dt>DC</dt><dd><b>Eje 1:</b> energía eléctrica, circuito, interruptor. Jardín: unir pila y lamparita. 2.º: el interruptor abre y cierra el circuito.</dd>
-      <dt>Cómo se juega</dt><dd>Se arrastra el dedo o el mouse por el camino libre. Desde el nivel 8 hay un interruptor en el camino que hay que prender para que la luz funcione.</dd>
+      <dt>Cómo se juega</dt><dd>Se arrastra el dedo o el mouse por el camino libre. Desde el nivel 8 hay un interruptor en el camino: se toca para prenderlo y recién ahí la luz funciona.</dd>
       <dt>Niveles</dt><dd>10. Laberintos más grandes; los 3 últimos con interruptor. Modo libre: se arman paredes y se prueba el cable.</dd>
       <dt>Antes</dt><dd>Con el docente: armar un circuito real con pila, cables y lamparita (o un juguete a pilas abierto).</dd>
       <dt>Cierre</dt><dd>¿Para qué sirve el interruptor? ¿Qué cosas de la casa tienen uno?</dd>
@@ -187,7 +188,7 @@ td.ico{font-family:var(--emoji);font-size:14pt;text-align:center;width:9mm}
     <dl>
       <dt>DC</dt><dd><b>Eje 3:</b> patrones y repetición (base de los bucles) y depuración ("encontrar el error").</dd>
       <dt>Cómo se juega</dt><dd>Se ve una fila de figuras con lugares vacíos <b>?</b> y se tocan las que siguen. En los niveles <span class="emo">🐞</span> se toca la figura equivocada.</dd>
-      <dt>Niveles</dt><dd>11. Patrones AB, AAB, ABC… luego faltan dos figuras; los 3 últimos son "¿cuál está mal?". Modo libre: se arma un patrón que se repite y suena como música.</dd>
+      <dt>Niveles</dt><dd>11. Patrones AB, AAB, ABC… luego faltan dos figuras; los 3 últimos son "¿cuál está mal?" (el patrón se repite al menos tres veces, para poder descubrirlo). Modo libre: se arma un patrón que se repite y suena como música.</dd>
       <dt>Antes</dt><dd>Patrones con el cuerpo: palma-palma-pie, o filas de chicos parados y sentados.</dd>
       <dt>Cierre</dt><dd>¿Cómo se dieron cuenta de qué venía después? ¿Dónde vemos patrones (baldosas, canciones, ropa)?</dd>
     </dl></div>
@@ -242,7 +243,7 @@ td.ico{font-family:var(--emoji);font-size:14pt;text-align:center;width:9mm}
     <p class="que">Escuchan una consigna ("SACÁ UNA FOTO") y tocan el ícono que corresponde en el celular.</p>
     <dl>
       <dt>DC</dt><dd><b>Eje 2:</b> lectura de íconos y símbolos en las TIC. <b>ED:</b> uso de interfaces.</dd>
-      <dt>Cómo se juega</dt><dd>La consigna se escucha y se lee arriba del celular (<span class="emo">🔊</span> la repite). Cuatro consignas por nivel.</dd>
+      <dt>Cómo se juega</dt><dd>La consigna se escucha y se lee arriba del celular (<span class="emo">👂</span> la repite). Cuatro consignas por nivel.</dd>
       <dt>Niveles</dt><dd>6. Cada nivel muestra más íconos (de 3 a 9).</dd>
       <dt>Antes</dt><dd>Tarjetas con íconos dibujados: ¿qué pasa si toco este?</dd>
       <dt>Cierre</dt><dd>¿Por qué el ícono de la cámara tiene ese dibujo? Inventen un ícono nuevo.</dd>
