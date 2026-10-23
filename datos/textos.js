@@ -50,6 +50,8 @@ DATOS.textos = {
     sonidoSi: "🔊 SONIDO SÍ",
     sonidoNo: "🔇 SONIDO NO",
     borrarEstrellas: "⭐ BORRAR ESTRELLAS",
+    mantener: "MANTENÉ APRETADO",
+
     probarPremio: "🎁 PROBAR EL PREMIO",
     pantallaCompleta: "⛶ PANTALLA COMPLETA",
     docentes: "📄 PARA DOCENTES",
@@ -75,7 +77,8 @@ DATOS.textos = {
   voz: {
     noPuede: "🔇 ESTE NAVEGADOR NO PUEDE LEER EN VOZ ALTA",
     noSePudo: "🔇 NO SE PUDO LEER EN VOZ ALTA",
-    primeroEscribi: "⌨️ PRIMERO ESCRIBÍ ALGO"
+    primeroEscribi: "⌨️ PRIMERO ESCRIBÍ ALGO",
+    sinVoz: "🔇 ESTA COMPU NO TIENE VOZ: QUE TE LEA LA SEÑO O EL SEÑO"
   },
 
   /* Etiquetas que se repiten en varios juegos */

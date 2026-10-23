@@ -6,9 +6,14 @@ function beep(f=600,d=.12,type="sine"){ if(!sound)return; try{ac=ac||new (window
 const good=()=>beep(880,.15), bad=()=>beep(180,.25,"square");
 function fanfare(){[523,659,784,1047].forEach((f,i)=>later(()=>beep(f,.2),i*130))}
 
-/* sintetizador: lo usan instrumentos, secuencias libre y premio */
+/* sintetizador: lo usan instrumentos, secuencias libre y premio.
+   Todo pasa por un canal (bus) que se corta al salir del juego, y nada suena con "SONIDO NO". */
 function AC(){ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==="suspended")ac.resume();return ac}
+let bus=null;
+function salida(){const c=AC();if(!bus){bus=c.createGain();bus.connect(c.destination)}return bus}
+function cortarSonidos(){if(!bus)return;try{bus.disconnect()}catch(e){}bus=null}
 function tone(type,f,t0,dur,o={}){
+  if(!sound)return;
   const{a=.01,vol=.25,vib=0,vibDelay=0,lp=0,lpEnv=null,bp=0,hold=false,slide=0}=o;const c=AC();const os=c.createOscillator(),g=c.createGain();os.type=type;
   if(slide){os.frequency.setValueAtTime(f*slide,t0);os.frequency.exponentialRampToValueAtTime(f,t0+.08)}else os.frequency.setValueAtTime(f,t0);
   let node=os;
@@ -22,13 +27,13 @@ function tone(type,f,t0,dur,o={}){
   g.gain.setValueAtTime(.0001,t0);g.gain.exponentialRampToValueAtTime(vol,t0+a);
   if(hold)g.gain.setValueAtTime(vol,t0+dur-.08);
   g.gain.exponentialRampToValueAtTime(.0001,t0+dur);
-  node.connect(g).connect(c.destination);os.start(t0);os.stop(t0+dur+.05);
+  node.connect(g).connect(salida());os.start(t0);os.stop(t0+dur+.05);
 }
-function pluck(f,t0,dur=1.4){const c=AC(),sr=c.sampleRate,N=Math.round(sr/f),len=Math.floor(sr*dur);const b=c.createBuffer(1,len,sr),d=b.getChannelData(0);
+function pluck(f,t0,dur=1.4){if(!sound)return;const c=AC(),sr=c.sampleRate,N=Math.round(sr/f),len=Math.floor(sr*dur);const b=c.createBuffer(1,len,sr),d=b.getChannelData(0);
   const buf=new Float32Array(N).map(()=>Math.random()*2-1);for(let i=0;i<len;i++){const j=i%N,v=buf[j];d[i]=v*.45;buf[j]=.497*(v+buf[(j+1)%N])}
-  const s=c.createBufferSource();s.buffer=b;s.connect(c.destination);s.start(t0)}
-function noise(t0,dur,vol,hp,pow=3){const c=AC(),len=Math.floor(c.sampleRate*dur);const b=c.createBuffer(1,len,c.sampleRate),d=b.getChannelData(0);
+  const s=c.createBufferSource();s.buffer=b;s.connect(salida());s.start(t0)}
+function noise(t0,dur,vol,hp,pow=3){if(!sound)return;const c=AC(),len=Math.floor(c.sampleRate*dur);const b=c.createBuffer(1,len,c.sampleRate),d=b.getChannelData(0);
   for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,pow);const s=c.createBufferSource();s.buffer=b;const f=c.createBiquadFilter();f.type="highpass";f.frequency.value=hp;
-  const g=c.createGain();g.gain.value=vol;s.connect(f).connect(g).connect(c.destination);s.start(t0)}
-function drum(t0,f1,f2,len,vol=1){const c=AC();const o=c.createOscillator(),g=c.createGain();o.frequency.setValueAtTime(f1,t0);o.frequency.exponentialRampToValueAtTime(f2,t0+len*.7);
-  g.gain.setValueAtTime(vol,t0);g.gain.exponentialRampToValueAtTime(.001,t0+len);o.connect(g).connect(c.destination);o.start(t0);o.stop(t0+len+.05)}
+  const g=c.createGain();g.gain.value=vol;s.connect(f).connect(g).connect(salida());s.start(t0)}
+function drum(t0,f1,f2,len,vol=1){if(!sound)return;const c=AC();const o=c.createOscillator(),g=c.createGain();o.frequency.setValueAtTime(f1,t0);o.frequency.exponentialRampToValueAtTime(f2,t0+len*.7);
+  g.gain.setValueAtTime(vol,t0);g.gain.exponentialRampToValueAtTime(.001,t0+len);o.connect(g).connect(salida());o.start(t0);o.stop(t0+len+.05)}

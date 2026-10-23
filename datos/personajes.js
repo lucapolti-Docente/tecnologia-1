@@ -127,6 +127,9 @@ DATOS.personajes = {
     instrumentos: ["piano", "tambor", "guitarra", "trompeta", "platillo", "xilofono"]
   },
 
+  /* papelitos de la pantalla de victoria */
+  confeti: ["🎉", "⭐", "✨", "🎊", "🌟"],
+
   /* ÍCONO DE CADA JUEGO en el inicio y el menú */
   iconosJuegos: {
     robot: "🤖",

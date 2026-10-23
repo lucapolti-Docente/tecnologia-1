@@ -8,7 +8,7 @@
   color-scheme:light;
 }
 html,body{height:100%}
-body{background:var(--bg);color:var(--ink);font-family:var(--display);text-transform:uppercase;overflow-x:hidden;overflow-y:auto;
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--display);text-transform:uppercase;overflow-x:hidden;overflow-y:auto;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));box-sizing:border-box;
   user-select:none;-webkit-user-select:none}
 *{box-sizing:border-box}
@@ -130,6 +130,23 @@ button:focus-visible{outline:4px solid var(--ink);outline-offset:3px}
 .win h2{margin:0;font-size:clamp(40px,8vh,80px);font-weight:800;letter-spacing:.05em}
 .win .row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
 .win .next{background:var(--ok);color:#fff;box-shadow:0 6px 0 #17804C}
+.win{overflow:hidden}
+.confe{position:absolute;top:-10%;line-height:1;pointer-events:none;font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif;animation:cae 2.2s ease-in forwards}
+@keyframes cae{to{transform:translateY(115vh) rotate(260deg);opacity:.2}}
+
+/* pista amable después de varios errores: lo correcto late y brilla */
+.pista{animation:pista .9s ease-in-out 3;box-shadow:0 0 0 6px #FFE066,0 8px 0 rgba(35,32,74,.18)}
+@keyframes pista{50%{transform:scale(1.1)}}
+
+/* ficha que acaba de ganar su ⭐ */
+.tile.nueva{animation:pop .6s 3}
+.tile.nueva .badge{animation:brillo 1.2s 2}
+@keyframes brillo{50%{transform:scale(1.5) rotate(20deg);filter:drop-shadow(0 0 12px #FFE066)}}
+
+/* botón del menú que hay que mantener apretado (borrar estrellas) */
+.mbtn.mantener{flex-wrap:wrap;background:linear-gradient(90deg,#FFB3B5 50%,var(--bg) 50%) right/200% 100% no-repeat;transition:background-position .2s}
+.mbtn.mantener small{width:100%;font-size:14px;opacity:.6;letter-spacing:.06em}
+.mbtn.mantener.llenando{background-position:left;transition:background-position 2s linear}
 
 /* celular / pantallas chicas: se puede scrollear (cada juego tiene sus reglas al final de su estilos.css) */
 @media (max-width:700px),(max-height:500px){
@@ -142,11 +159,14 @@ button:focus-visible{outline:4px solid var(--ink);outline-offset:3px}
   .stage{padding-bottom:110px}
   .tile .ico{font-size:58px}
   .tray button{width:96px;height:96px}
-  .bar{min-height:72px}
-  .dots{gap:6px}.dots i{width:14px;height:14px}.chip{font-size:18px;padding:4px 12px}
+  .bar{min-height:72px;flex-wrap:wrap;row-gap:6px}
+  .bar h1{font-size:clamp(20px,6.5vw,30px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .dots{gap:6px;width:100%;justify-content:center;order:3}.dots:empty{display:none}.dots i{width:14px;height:14px}.chip{font-size:18px;padding:4px 12px}
+  .win h2{font-size:clamp(30px,9vw,80px);white-space:nowrap}
+  .win .star{font-size:min(16vh,120px)}
   .item{font-size:110px;padding:12px 28px}
   .bin{width:calc(50% - 8px);aspect-ratio:auto;height:120px}
   .reci{height:auto;gap:28px}
   .tools button{width:64px;height:64px;font-size:34px}
 }
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.confe{display:none}}
