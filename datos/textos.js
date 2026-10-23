@@ -164,6 +164,7 @@ DATOS.textos = {
     soltar: "✋ SOLTAR",
     bajar: "🌀 BAJAR",
     necesitoEnergia: "⚡ NECESITO ENERGÍA",
+    sinEnergia: "⚡ ¡ME QUEDÉ SIN ENERGÍA!",
     necesitoEnergiaVoz: "necesito energía",
     encontreAlgo: "👀 ¡ENCONTRÉ ALGO!",
     nadaEscondido: "👀 ACÁ NO HAY NADA ESCONDIDO",

@@ -12,7 +12,9 @@ function robo(){
   if(lvl==="free")return roboFree();
   const T=TEXTOS["arma-robot"];
   const L=ROLV[lvl],G={x:L.gx||80,b:L.gb||22};
-  const a=area();const H=a.n?330:Math.max(300,a.h-190);const u=Math.max(34,Math.min(80,H/4.6));
+  /* tamaño: el robot (con hélice y antena) tiene que entrar entero en la escena, también en el celular */
+  const tam=()=>{const a=area();const H=a.n?440:Math.max(300,a.h-190);return{H,u:Math.max(30,Math.min(80,H/9,a.w/9))}};
+  const{H,u}=tam();
   stage.innerHTML=`<div class="rstory" style="--u:${u}px"><div class="scene2 ${L.night?'night':''}" id="sc2" style="height:${H}px">
       <div class="bubble" id="bb"></div>
       ${(L.decor||[]).map(([e,x,b,s])=>`<div class="decor" style="left:${x}%;bottom:${b}%;font-size:${u*s}px">${e}</div>`).join("")}
@@ -21,7 +23,12 @@ function robo(){
       <div class="beam" id="bm"></div></div>
     <div class="tray2 wide" id="tr"></div></div>`;
   const rb=$("#rb"),sc2=$("#sc2"),bb=$("#bb"),gl=$("#gl");let k=0,busy=false,rbB="22%";const got=new Set();const needs=L.steps.map(s=>s[0]);
-  const say=(t,v)=>{bb.textContent=t;bb.classList.remove("pop");void bb.offsetWidth;bb.classList.add("pop");if(v)sayQuiet(v)};
+  /* todo lo que dice el robot también se escucha (sayQuiet saca los emojis) */
+  const say=(t,v)=>{bb.textContent=t;bb.classList.remove("pop");void bb.offsetWidth;bb.classList.add("pop");sayQuiet(v||t)};
+  /* al volar sube, pero sin que la hélice se salga de la escena */
+  const volar=()=>{const r=rb.getBoundingClientRect(),top=Math.min(r.top,...[...rb.querySelectorAll("*")].map(x=>x.getBoundingClientRect()).filter(b=>b.width>0).map(b=>b.top)),cu=parseFloat(getComputedStyle(rb).getPropertyValue("--u"))||u;
+    rbB=Math.round(Math.min(G.b/100*sc2.clientHeight-cu*2.5,sc2.clientHeight-(r.bottom-top)-8-cu*.25))+"px";rb.style.bottom=rbB};
+  alCambiarTamano(()=>{const t=tam();stage.querySelector(".rstory").style.setProperty("--u",t.u+"px");sc2.style.height=t.H+"px";if(rb.classList.contains("flying")){rb.style.bottom="";volar()}});
   const ask=()=>{const[need,txt,v]=L.steps[k];say(txt,v);
     const others=shuffle(Object.keys(RP).filter(x=>!needs.includes(x)&&!got.has(x))).slice(0,lvl>=5?3:2);
     $("#tr").innerHTML=shuffle([need,...others]).map(x=>`<button class="opt ins" data-k="${x}">${RP[x].e}<small>${RP[x].n}</small></button>`).join("");busy=false};
@@ -34,7 +41,7 @@ function robo(){
     if(need==="ruedas"){walk();[0,1,2,3].forEach(i=>later(()=>beep(200+i*30,.1,"square"),i*300));
       if(L.dance){later(()=>{rb.classList.add("dance");[523,659,784,659,523,659].forEach((f,i)=>later(()=>beep(f,.15,"triangle"),i*200))},1800);return 3200}return 1900}
     if(need==="piernas"){walk();rb.classList.add("hop");[0,1,2,3,4].forEach(i=>later(()=>beep(300+i*60,.08,"square"),i*330));later(()=>rb.classList.remove("hop"),1800);return 2000}
-    if(need==="helice"){rbB=`calc(${G.b}% - ${u*2.5}px)`;rb.style.bottom=rbB;rb.classList.add("flying");[0,1,2,3,4,5].forEach(i=>later(()=>beep(500+i*40,.06,"sawtooth"),i*180));return 1500}
+    if(need==="helice"){rb.classList.add("flying");volar();[0,1,2,3,4,5].forEach(i=>later(()=>beep(500+i*40,.06,"sawtooth"),i*180));return 1500}
     if(need==="brazo"){gl.style.left=`calc(${G.x}% - ${u*.9}px)`;gl.style.bottom=`calc(${rbB} + ${u*1.7}px)`;beep(700,.15);return 1300}
     if(need==="iman"){gl.style.left=`calc(${G.x}% - ${u*2.8}px)`;gl.style.bottom=`calc(${rbB} + ${u*1.1}px)`;[0,1,2].forEach(i=>later(()=>beep(900+i*120,.06),i*150));later(()=>{gl.style.opacity="0";good()},1100);return 1600}
     if(need==="termometro"){say(T.muchoFrio);[0,1,2,3,4,5].forEach(i=>later(()=>fly("❄️","snow"),i*220));beep(1200,.2);return 2000}
@@ -44,7 +51,7 @@ function robo(){
     return 600};
   $("#tr").onclick=e=>{const b=e.target.closest("button");if(!b||busy)return;const need=L.steps[k][0];
     if(b.dataset.k!==need){shakeEl(b);rb.classList.remove("no");void rb.offsetWidth;rb.classList.add("no");return}
-    busy=true;got.add(need);rb.classList.add("has-"+RP[need].c);good();$("#tr").innerHTML="";const d=act(need);
+    busy=true;got.add(need);rb.classList.add("has-"+RP[need].c);good();$("#tr").innerHTML="";if(rb.classList.contains("flying"))volar();const d=act(need);
     later(()=>{k++;if(k<L.steps.length)ask();else{if(!L.end)say(T.listo);rb.classList.add("happy");later(win,1300)}},d)};
   ask();
 }
@@ -52,7 +59,8 @@ function robo(){
 /* ROBOT LIBRE: un campo para pasear con las piezas que elijan */
 function roboFree(){
   const T=TEXTOS["arma-robot"],F=FONDOS.armaRobot;
-  const a=area();const H=a.n?400:Math.max(320,a.h-230);const u=Math.max(24,Math.min(46,H/8.5));
+  const tam=()=>{const a=area();const H=a.n?400:Math.max(320,a.h-230);return{H,u:Math.max(24,Math.min(46,H/8.5))}};
+  let{H,u}=tam();
   const objs=PERS.armaRobot.campo.map(o=>Object.assign({},o)); /* copia: el juego mueve y esconde los objetos */
   const bushes=F.arbustos;
   let pos={x:10,y:10},parts=new Set(),flying=false,night=false,lamp=false,held=null,mags=0;
@@ -66,10 +74,14 @@ function roboFree(){
     <div class="tbar" id="acts"></div></div>`;
   const rb=$("#rb"),sc2=$("#sc2"),bb=$("#bb");
   const has=k=>parts.has(k);
-  const say=(t,v)=>{bb.textContent=t;bb.classList.remove("pop");void bb.offsetWidth;bb.classList.add("pop");if(v)sayQuiet(v)};
+  const say=(t,v)=>{bb.textContent=t;bb.classList.remove("pop");void bb.offsetWidth;bb.classList.add("pop");sayQuiet(v||t)};
   const fly=(e,cls,x,y)=>{const s=document.createElement("span");s.className=cls;s.textContent=e;if(x!==undefined){s.style.left=x+"%";s.style.bottom=y+"%"}sc2.appendChild(s);later(()=>s.remove(),2000)};
   const dist=o=>Math.hypot(o.x-pos.x,(o.y-pos.y)*.8);
-  const place=()=>{rb.style.left=pos.x+"%";rb.style.bottom=pos.y+"%";rb.classList.toggle("flying",flying);
+  const limites=()=>{const sw=sc2.offsetWidth||1,sh=sc2.offsetHeight||1,ru=u*.62;
+    const mx=(rb.offsetWidth/2+8)/sw*100,top=100-(rb.offsetHeight+ru*1.6)/sh*100;
+    return{minX:mx,maxX:100-mx,maxY:Math.max(8,top)}};
+  const encerrar=()=>{const l=limites();pos.x=Math.min(l.maxX,Math.max(l.minX,pos.x));pos.y=Math.min(flying?l.maxY:Math.min(52,l.maxY),pos.y)};
+  const place=()=>{encerrar();rb.style.left=pos.x+"%";rb.style.bottom=pos.y+"%";rb.classList.toggle("flying",flying);
     sc2.style.setProperty("--lx",pos.x+"%");sc2.style.setProperty("--ly",(100-pos.y-10)+"%");
     if(held!==null){const el=$("#fo"+held);el.style.left=`calc(${pos.x}% + ${u*1.2}px)`;el.style.bottom=`calc(${pos.y}% + ${u*1.6}px)`}};
   const scene=()=>{sc2.classList.toggle("night",night&&!(lamp&&has("luz")&&has("bateria")));sc2.classList.toggle("dark2",night);sc2.classList.toggle("lamp-on",night&&lamp&&has("luz")&&has("bateria"))};
@@ -85,12 +97,13 @@ function roboFree(){
   $("#tr").onclick=e=>{const b=e.target.closest("button");if(!b)return;const k=b.dataset.k;
     if(has(k)){parts.delete(k);beep(300,.08);
       if(k==="brazo"&&held!==null){const el=$("#fo"+held);objs[held].x=pos.x+3;objs[held].y=pos.y;el.style.left=objs[held].x+"%";el.style.bottom=objs[held].y+"%";held=null}
-      if(k==="helice"&&flying){flying=false;pos.y=Math.min(pos.y,52)}}
+      if(k==="helice"&&flying){flying=false;pos.y=Math.min(pos.y,52)}
+      if(k==="bateria"&&flying){flying=false;pos.y=Math.min(pos.y,52);say(T.sinEnergia)}}
     else{parts.add(k);good()}
     drawActs()};
   const needPower=()=>{if(has("bateria"))return false;say(T.necesitoEnergia,T.necesitoEnergiaVoz);rb.classList.remove("no");void rb.offsetWidth;rb.classList.add("no");return true};
-  const move=m=>{if(needPower())return;const st=7,maxY=flying?70:52;
-    if(m==="L")pos.x=Math.max(4,pos.x-st);if(m==="R")pos.x=Math.min(94,pos.x+st);if(m==="U")pos.y=Math.min(maxY,pos.y+st);if(m==="D")pos.y=Math.max(4,pos.y-st);
+  const move=m=>{if(needPower())return;const st=7;
+    if(m==="L")pos.x-=st;if(m==="R")pos.x+=st;if(m==="U")pos.y+=st;if(m==="D")pos.y=Math.max(4,pos.y-st); /* place() lo deja dentro de la escena */
     beep(has("piernas")&&!has("ruedas")?420:240,.06,"square");if(has("piernas")&&!has("ruedas")){rb.classList.remove("hop1");void rb.offsetWidth;rb.classList.add("hop1")}place()};
   $("#acts").onclick=e=>{const b=e.target.closest("button");if(!b)return;
     if(b.dataset.m)return move(b.dataset.m);
@@ -115,6 +128,7 @@ function roboFree(){
   };
   document.onkeydown=e=>{if(cur!=="arma-robot"||lvl!=="free"||!$("#menu").hidden)return;const m={ArrowLeft:"L",ArrowRight:"R",ArrowUp:"U",ArrowDown:"D"}[e.key];if(m&&(has("ruedas")||has("piernas"))){e.preventDefault();move(m)}};
   say(T.armame);drawActs();
+  alCambiarTamano(()=>{({H,u}=tam());stage.querySelector(".rstory").style.setProperty("--u",u+"px");sc2.style.height=H+"px";rb.style.setProperty("--u",Math.round(u*.62)+"px");place()});
 }
 
 registrar("arma-robot",{iniciar:robo,niveles:()=>ROLV,libre:true});
