@@ -1,7 +1,7 @@
 /* ÍCONOS */
 .phone{background:#23204A;border-radius:44px;padding:18px 16px 26px;box-shadow:0 10px 0 var(--soft);max-width:100%}
 .phone .say{display:flex;align-items:center;gap:12px;background:#fff;border-radius:22px;padding:10px 16px;margin-bottom:14px;font-weight:800;font-size:clamp(20px,3.2vh,30px)}
-.phone .say button{width:56px;height:56px;border-radius:50%;background:#D97706;color:#fff;font-size:28px;flex:none}
+.phone .say button{width:64px;height:64px;border-radius:50%;background:#D97706;color:#fff;font-size:28px;flex:none}
 .apps{display:grid;grid-template-columns:repeat(3,calc(var(--ic)*1.35));gap:14px;justify-content:center;background:linear-gradient(#5CC8F0,#8E5BE8);border-radius:26px;padding:18px}
 .app{width:calc(var(--ic)*1.35);height:calc(var(--ic)*1.35);border-radius:24%;background:rgba(255,255,255,.92);font-size:var(--ic);line-height:1;display:grid;place-items:center;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;box-shadow:0 4px 0 rgba(35,32,74,.25)}
 .app.ok{background:#C8F2D8}

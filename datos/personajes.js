@@ -104,9 +104,10 @@ DATOS.personajes = {
     ]
   },
 
-  /* ÍCONOS: [ícono, CONSIGNA] */
+  /* ÍCONOS: [ícono, CONSIGNA]. Evitar 🏠 (es el botón de inicio del juego) y el dibujo del botón "repetir". */
   iconos: {
-    apps: [["📷", "SACÁ UNA FOTO"], ["📞", "LLAMÁ POR TELÉFONO"], ["✉️", "MANDÁ UN MENSAJE"], ["🎵", "PONÉ MÚSICA"], ["🔍", "BUSCÁ ALGO"], ["🗑️", "BORRÁ ALGO"], ["▶️", "DALE PLAY AL VIDEO"], ["⏸️", "PAUSÁ EL VIDEO"], ["🏠", "VOLVÉ AL INICIO"], ["⚙️", "ABRÍ LOS AJUSTES"], ["🔋", "MIRÁ LA BATERÍA"], ["🔊", "SUBÍ EL VOLUMEN"], ["🔇", "SACÁ EL SONIDO"], ["📶", "PRENDÉ EL WIFI"], ["⏰", "PONÉ UNA ALARMA"], ["🗺️", "ABRÍ EL MAPA"]]
+    repetir: "👂",   // botón para volver a escuchar la consigna (distinto de la app 🔊 de volumen)
+    apps: [["📷", "SACÁ UNA FOTO"], ["📞", "LLAMÁ POR TELÉFONO"], ["✉️", "MANDÁ UN MENSAJE"], ["🎵", "PONÉ MÚSICA"], ["🔍", "BUSCÁ ALGO"], ["🗑️", "BORRÁ ALGO"], ["▶️", "DALE PLAY AL VIDEO"], ["⏸️", "PAUSÁ EL VIDEO"], ["⬅️", "VOLVÉ ATRÁS"], ["⚙️", "ABRÍ LOS AJUSTES"], ["🔋", "MIRÁ LA BATERÍA"], ["🔊", "SUBÍ EL VOLUMEN"], ["🔇", "SACÁ EL SONIDO"], ["📶", "PRENDÉ EL WIFI"], ["⏰", "PONÉ UNA ALARMA"], ["🗺️", "ABRÍ EL MAPA"]]
   },
 
   /* ¿QUÉ NECESITO? */
