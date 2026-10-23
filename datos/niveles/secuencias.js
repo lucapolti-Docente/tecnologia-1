@@ -3,6 +3,7 @@
    n = largo de la fila
    m = cuántas figuras faltan al final
    err: 1 = nivel de "¿cuál está mal?": hay una figura equivocada para encontrar
+            (el patrón tiene que verse al menos 3 veces: n = 3 × largo del patrón o más; si no, hay dos respuestas posibles)
    Las figuras se editan en datos/personajes.js → secuencias */
 window.DATOS = window.DATOS || {};
 DATOS.niveles = DATOS.niveles || {};
@@ -18,5 +19,5 @@ DATOS.niveles.secuencias = [
   { t: "ABCD", n: 8, m: 2 },
   { t: "AB", n: 8, err: 1 },
   { t: "ABC", n: 9, err: 1 },
-  { t: "AABB", n: 8, err: 1 }
+  { t: "AABB", n: 12, err: 1 }
 ];

@@ -1,3 +1,9 @@
 /* SECUENCIAS (la fila y las opciones usan .line y .opt de comun/estilos.css) */
 .line .tap{cursor:pointer;background:var(--bg)}
 .line .fixed{background:#C8F2D8}
+.line span.salta{animation:salta .35s ease-out}
+@keyframes salta{50%{transform:translateY(-22%) scale(1.15)}}
+.line .tap.pista{background:#FFE9A0}
+button.bugtag{border:0;cursor:pointer;color:var(--ink)}
+/* modo libre: ▶ ⌫ 🗑️ bien grandes */
+.controles .tbtn{font-size:34px}
