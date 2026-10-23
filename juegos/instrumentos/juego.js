@@ -15,30 +15,33 @@ const SONIDOS_INS={
 };
 /* INS = dibujo + nombre (de datos) + sonido */
 const INS={};Object.keys(PERS.instrumentos).forEach(k=>{INS[k]={i:PERS.instrumentos[k].i,n:PERS.instrumentos[k].n,p:SONIDOS_INS[k]}});
-const playIns=k=>{try{INS[k].p(AC().currentTime+.05)}catch(e){}};
+/* cada sonido corta el anterior: tocar muchas veces no los apila */
+const playIns=k=>{if(!sound)return;cortarSonidos();try{INS[k].p(AC().currentTime+.05)}catch(e){}};
 const INSLV=NIVELES.instrumentos;
 function inst(){
-  const a=area();
   if(lvl==="free"){
-    stage.innerHTML=`<div class="freeinst" style="--o:${Math.max(56,Math.floor(Math.min(110,a.h/4.6,a.w/(a.n?4:7.5))))}px">${Object.entries(INS).map(([k,v])=>`<button class="opt ins" data-k="${k}">${v.i}<small>${v.n}</small></button>`).join("")}</div>`;
+    const tamL=()=>{const a=area();return Math.max(56,Math.floor(Math.min(110,a.h/4.6,a.w/(a.n?5.2:7.5))))};
+    stage.innerHTML=`<div class="freeinst" style="--o:${tamL()}px">${Object.entries(INS).map(([k,v])=>`<button class="opt ins" data-k="${k}">${v.i}<small>${v.n}</small></button>`).join("")}</div>`;
     stage.querySelector(".freeinst").onclick=e=>{const b=e.target.closest(".opt");if(!b)return;playIns(b.dataset.k);b.classList.remove("pop");void b.offsetWidth;b.classList.add("pop")};
+    alCambiarTamano(()=>stage.querySelector(".freeinst").style.setProperty("--o",tamL()+"px"));
     return;
   }
-  const SET=INSLV[lvl],N=SET.length,R=3;const TG=shuffle([...SET]).slice(0,R);let round=0,target,busy=false;
-  const o=Math.max(56,Math.floor(Math.min(100,a.h/4.8,(a.w-40)/(N*1.7))));
-  const p=Math.max(110,Math.floor(Math.min(200,a.h/3.2)));
-  stage.innerHTML=`<div class="inst" style="--o:${o}px;--p:${p}px"><div class="prog" id="pr"></div><button class="play" id="pl" aria-label="${TEXTOS.comun.escuchar}">🔊</button><div class="opts" id="op"></div></div>`;
+  const SET=INSLV[lvl],N=SET.length,R=3;const TG=shuffle([...SET]).slice(0,R);let round=0,target,busy=false,errores=0;
+  const tam=()=>{const a=area();return`--o:${Math.max(56,Math.floor(Math.min(100,a.h/4.8,(a.w-40)/(N*1.7))))}px;--p:${Math.max(110,Math.floor(Math.min(200,a.h/3.2)))}px`};
+  stage.innerHTML=`<div class="inst" style="${tam()}"><div class="prog" id="pr"></div><button class="play" id="pl" aria-label="${TEXTOS.comun.escuchar}">🔊</button><div class="opts" id="op"></div></div>`;
   const ring=()=>{const pl=$("#pl");pl.classList.remove("ring");void pl.offsetWidth;pl.classList.add("ring");playIns(target)};
+  alCambiarTamano(()=>stage.querySelector(".inst").setAttribute("style",tam()));
+  const puntos=()=>{$("#pr").innerHTML=[...Array(R)].map((_,i)=>`<i style="${i<round?'background:'+FONDOS.juegos.instrumentos:''}"></i>`).join("")};
   const next=()=>{
-    const opts=shuffle([...SET]);target=TG[round];busy=false;
-    $("#pr").innerHTML=[...Array(R)].map((_,i)=>`<i style="${i<round?'background:'+FONDOS.juegos.instrumentos:''}"></i>`).join("");
+    const opts=shuffle([...SET]);target=TG[round];busy=false;errores=0;
+    puntos();
     $("#op").innerHTML=opts.map(k=>`<button class="opt ins" data-k="${k}">${INS[k].i}<small>${INS[k].n}</small></button>`).join("");
     later(ring,500);
   };
   $("#pl").onclick=ring;
   $("#op").onclick=e=>{const b=e.target.closest(".opt");if(!b||busy)return;
-    if(b.dataset.k===target){busy=true;good();b.classList.add("pop");round++;if(round>=R)later(win,700);else later(next,1200)}
-    else shakeEl(b)};
+    if(b.dataset.k===target){busy=true;good();sayQuiet(INS[target].n);b.classList.add("pop");round++;puntos();if(round>=R)later(win,700);else later(next,1200)}
+    else{shakeEl(b);if(++errores>=2){errores=0;later(ring,400)}}}; /* pista: después de 2 errores vuelve a sonar */
   next();
 }
 
