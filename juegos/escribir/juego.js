@@ -41,8 +41,15 @@ function escribir(){
     else if(b.dataset.t==="say"){speak(free?typeVal:ESC[lvl]);try{ti.focus()}catch(_){}return}
     beep(560,.05);marks();render();try{ti.focus()}catch(_){}};
   marks();
+  /* el cursor de verdad siempre al final (el que se dibuja está al final): tocar el cuadro o usar flechas no mete letras en el medio */
+  const alFinal=()=>{try{const n=ti.value.length;if(ti.selectionStart!==n||ti.selectionEnd!==n)ti.setSelectionRange(n,n)}catch(_){}};
+  ["click","focus","select","mouseup","keyup"].forEach(ev=>ti.addEventListener(ev,alFinal));
+  ti.addEventListener("keydown",e=>{
+    if(["ArrowLeft","ArrowRight","ArrowUp","ArrowDown","Home","End","PageUp","PageDown"].indexOf(e.key)>=0){e.preventDefault();return}
+    if(e.key==="Enter"&&!free)e.preventDefault()}); /* en los niveles Enter no hace nada (no hay renglones) */
   ti.addEventListener("input",()=>{
     if(done){ti.value=val;return}
+    if(!free&&ti.value.indexOf("\n")>=0)ti.value=ti.value.replace(/\n/g,"");
     const grew=ti.value.length>val.length;val=ti.value;if(free)typeVal=val;render();
     if(free){if(grew)beep(loco?300+Math.random()*700:520,.04);return}
     const arr=[...val.toUpperCase()];
@@ -50,7 +57,8 @@ function escribir(){
     if(arr.length===W.length&&arr.every((c,i)=>norm(c)===norm(W[i]))){done=true;try{ti.blur()}catch(_){}later(win,500)}
   });
   render();
-  setTimeout(()=>{try{ti.focus()}catch(e){}},50);
+  if(!free)sayQuiet(ESC[lvl]); /* lee la palabra para quien todavía no lee */
+  setTimeout(()=>{try{ti.focus();alFinal()}catch(e){}},50);
 }
 document.addEventListener("keydown",()=>{if(cur==="escribir"&&$("#menu").hidden){const ti=$("#ti");if(ti&&document.activeElement!==ti)ti.focus()}});
 
