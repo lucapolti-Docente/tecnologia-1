@@ -107,6 +107,7 @@ DATOS.textos = {
 
   dibujo: {
     mirar: "👀",               // arriba del dibujo modelo
+    consigna: "¡COPIÁ EL DIBUJO!",   // voz al empezar cada nivel
     color: "COLOR",            // etiquetas
     sello: "SELLO"
   },

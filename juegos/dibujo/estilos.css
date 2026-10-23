@@ -12,9 +12,12 @@
 .pal button{width:var(--btn);height:var(--btn);border-radius:50%;box-shadow:0 5px 0 rgba(35,32,74,.2);border:6px solid transparent}
 .pal button.sel{border-color:var(--ink);transform:scale(1.08)}
 .pal .eraser{background:var(--card);font-size:calc(var(--btn)*.45)}
+.paint .cell.ola{animation:ola .4s ease-out}
+@keyframes ola{50%{transform:scale(1.25)}}
+.paint .cell.pista{box-shadow:0 0 0 4px #FFE066}
 
 @media (max-width:700px),(max-height:500px){
-  .dibu{height:auto}
+  .dibu{height:auto;padding-bottom:90px} /* que el 🏠 no tape la 🧽 */
   .pal,.pal.two{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center}
   .pal button{width:56px;height:56px}
 }
