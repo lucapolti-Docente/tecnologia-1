@@ -112,6 +112,11 @@ DATOS.textos = {
     sello: "SELLO"
   },
 
+  sombras: {
+    consigna: "¿CUÁL ES SU SOMBRA?",                        // voz al empezar
+    consignaOficio: "{x}: ¿QUÉ NECESITA PARA TRABAJAR?"      // voz en los niveles de oficios
+  },
+
   laberinto: {
     interruptor: "¡PRENDÉ EL INTERRUPTOR!",   // voz en el primer nivel con interruptor
     pared: "PARED", pila: "PILA", lamparita: "LAMPARITA", cable: "CABLE"   // etiquetas del modo libre

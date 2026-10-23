@@ -42,21 +42,23 @@ DATOS.personajes = {
   },
 
   /* SOMBRAS: objetos y oficios [persona, OFICIO, herramienta]
+     Objetos: que no haya dos con la sombra casi igual (por eso no está el mouse, que se parecía al celular).
+     Oficios: la herramienta no tiene que estar ya dibujada en la mano de la persona.
      Oficios sin estereotipos (ESI): mitad mujeres y mitad varones, y no en los roles "de siempre". */
   sombras: {
-    objetos: ["🔨", "🔧", "✂️", "💡", "🔋", "📱", "🎧", "📷", "🔌", "🧲", "🔦", "⏰", "🚲", "✏️", "🔑", "🖱️", "🎸", "🚗"],
-    nombres: { "🔨": "MARTILLO", "🔧": "LLAVE INGLESA", "✂️": "TIJERA", "💡": "LAMPARITA", "🔋": "PILA", "📱": "CELULAR", "🎧": "AURICULARES", "📷": "CÁMARA", "🔌": "ENCHUFE", "🧲": "IMÁN", "🔦": "LINTERNA", "⏰": "RELOJ", "🚲": "BICICLETA", "✏️": "LÁPIZ", "🔑": "LLAVE", "🖱️": "MOUSE", "🎸": "GUITARRA", "🚗": "AUTO" },
+    objetos: ["🔨", "🔧", "✂️", "💡", "🔋", "📱", "🎧", "📷", "🔌", "🧲", "🔦", "⏰", "🚲", "✏️", "🔑", "☂️", "🎸", "🚗"],
+    nombres: { "🔨": "MARTILLO", "🔧": "LLAVE INGLESA", "✂️": "TIJERA", "💡": "LAMPARITA", "🔋": "PILA", "📱": "CELULAR", "🎧": "AURICULARES", "📷": "CÁMARA", "🔌": "ENCHUFE", "🧲": "IMÁN", "🔦": "LINTERNA", "⏰": "RELOJ", "🚲": "BICICLETA", "✏️": "LÁPIZ", "🔑": "LLAVE", "☂️": "PARAGUAS", "🎸": "GUITARRA", "🚗": "AUTO" },
     oficios: [
-      ["👩‍🔧", "MECÁNICA", "🔧"],
+      ["👩‍🔧", "MECÁNICA", "🔩"],
       ["👩‍🚒", "BOMBERA", "🧯"],
       ["👷‍♀️", "CONSTRUCTORA", "🔨"],
       ["👩‍🚀", "ASTRONAUTA", "🚀"],
       ["👩‍🌾", "GRANJERA", "🚜"],
       ["👨‍🍳", "COCINERO", "🍳"],
-      ["💇‍♂️", "PELUQUERO", "✂️"],
+      ["💇‍♂️", "PELUQUERO", "💈"],
       ["👨‍🏫", "MAESTRO", "📚"],
-      ["👨‍⚕️", "ENFERMERO", "🩺"],
-      ["👨‍🎨", "PINTOR", "🖌️"]
+      ["👨‍⚕️", "ENFERMERO", "🩹"],
+      ["👨‍🎨", "PINTOR", "🖼️"]
     ]
   },
 
