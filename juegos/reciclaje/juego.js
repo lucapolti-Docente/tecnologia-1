@@ -5,27 +5,17 @@ const CYCLE=`<div class="cycle">${PERS.reciclaje.ciclo.map((e,i)=>`<span style="
 const ELV=NIVELES.reciclaje;
 function reci(){
   if(lvl==="free")return reciFree();
-  const L=ELV[lvl];let q=[];
-  const pools={};L.b.forEach(k=>pools[k]=shuffle([...BINS[k].it]));
-  for(let i=0;i<L.n;i++){const k=L.b[i%L.b.length];if(!pools[k].length)pools[k]=shuffle([...BINS[k].it]);q.push({k,e:pools[k].pop()})}
-  q.sort(()=>Math.random()-.5);let done=0;
-  stage.innerHTML=`<div class="reci"><div class="prog" id="pr"></div><div class="item" id="it"></div>
-   <div class="bins">${L.b.map(k=>`<button class="bin ${BINS[k].ama?'ama':''}" style="--c:${BINS[k].c}" data-k="${k}"><span class="bi">${BINS[k].i}</span>${BINS[k].n}</button>`).join("")}</div></div>`;
-  const show=()=>{$("#pr").innerHTML=q.map((_,i)=>`<i class="${i<done?'on':''}"></i>`).join("");$("#it").textContent=q[done].e;$("#it").classList.remove("pop");void $("#it").offsetWidth;$("#it").classList.add("pop")};
-  show();
-  stage.querySelectorAll(".bin").forEach(b=>b.onclick=()=>{
-    if(done>=q.length)return;
-    if(b.dataset.k===q[done].k){good();b.classList.remove("pop");void b.offsetWidth;b.classList.add("pop");done++;
-      if(done>=q.length){$("#pr").innerHTML=q.map(()=>`<i class="on"></i>`).join("");later(()=>win(null,lvl===ELV.length-1?{note:CYCLE}:{}),300)}else show()}
-    else{bad();$("#it").classList.remove("shake");void $("#it").offsetWidth;$("#it").classList.add("shake")}
-  });
+  const L=ELV[lvl];
+  /* motor común de clasificar (comun/clasificar.js); al ganar el último nivel se ve el ciclo del reciclado */
+  classify(BINS,L.b,L.n,()=>win(null,lvl===ELV.length-1?{note:CYCLE}:{}),TEXTOS.reciclaje.consigna);
 }
 
 /* PLAZA (modo libre): agregan cosas que aparecen sucias y las limpian */
 const PLAZA=PERS.reciclaje.plaza;
 function reciFree(){
   const KB=Object.keys(BINS);
-  const a=area();const IT=Math.max(54,Math.floor(Math.min(110,(a.n?a.w:a.w-160)/8)));
+  const tamIT=()=>{const a=area();return Math.max(54,Math.floor(Math.min(110,(a.n?a.w:a.w-160)/8)))};
+  let IT=tamIT();
   stage.innerHTML=`<div class="plaza"><div class="prow"><div class="scene" id="sn" style="--it:${IT}px"></div>
     <div class="side">${KB.map(k=>`<div class="minibin ${BINS[k].ama?'ama':''}" data-k="${k}" style="--c:${BINS[k].c}"><span class="bi">${BINS[k].i}</span>${BINS[k].n}</div>`).join("")}</div></div>
     <div class="addbar" id="ab">${PLAZA.map(e=>`<button data-e="${e}" aria-label="${TEXTOS.reciclaje.agregar}">${e}</button>`).join("")}</div></div>`;
@@ -51,6 +41,7 @@ function reciFree(){
       if(it){it.dataset.left=+it.dataset.left-1;if(+it.dataset.left<=0){it.classList.remove("dirty");it.classList.add("pop","clean");[660,880,1100].forEach((f,i)=>later(()=>beep(f,.12),i*90))}}}
     else{if(bin)shakeEl(bin);t.classList.remove("drag");t.style.left=drag.left;t.style.top=drag.top;sn.appendChild(t)}
     drag=null};
+  alCambiarTamano(()=>{IT=tamIT();sn.style.setProperty("--it",IT+"px");sn.querySelectorAll(".tr").forEach(t=>t.style.fontSize=Math.round(IT*.45)+"px")});
 }
 
 registrar("reciclaje",{iniciar:reci,niveles:()=>ELV,libre:true});

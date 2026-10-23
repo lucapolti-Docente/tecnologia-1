@@ -101,6 +101,7 @@ DATOS.textos = {
   },
 
   reciclaje: {
+    consigna: "¿DÓNDE VA?",    // voz al empezar cada nivel
     agregar: "AGREGAR"         // etiqueta de los botones de la plaza
   },
 

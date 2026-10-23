@@ -21,5 +21,5 @@
 .minibin{height:74px}
 
 @media (max-width:700px),(max-height:500px){
-  .plaza{height:auto}.prow{flex-direction:column}.scene{min-height:360px}.side{flex-direction:row;flex-wrap:wrap}.minibin{width:calc(50% - 6px)}.addbar button{width:62px;height:62px;font-size:36px}
+  .plaza{height:auto;padding-bottom:90px} /* que el 🏠 no tape los botones de agregar */.prow{flex-direction:column}.scene{min-height:360px}.side{flex-direction:row;flex-wrap:wrap}.minibin{width:calc(50% - 6px)}.addbar button{width:62px;height:62px;font-size:36px}
 }

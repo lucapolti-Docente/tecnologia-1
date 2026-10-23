@@ -16,17 +16,19 @@ DATOS.personajes = {
   /* ROBOT */
   robot: { robot: "🤖", meta: "⭐", obstaculo: "🧱" },
 
-  /* RECICLAJE: contenedores y lo que va en cada uno (ama:1 = letra oscura sobre color claro) */
+  /* RECICLAJE: contenedores y lo que va en cada uno (ama:1 = letra oscura sobre color claro)
+     El dibujo del contenedor (i) no se repite en su lista (it): así hay que pensar en el material, no buscar el igual.
+     Cada contenedor necesita al menos 2 residuos para que no se repitan dentro de un nivel. */
   reciclaje: {
     contenedores: {
-      pap: { n: "PAPEL",    i: "📄", c: "#2F80ED", it: ["📰", "✉️", "📄"] },
-      pla: { n: "PLÁSTICO", i: "🧴", c: "#FFC21A", it: ["🧴", "🥤", "🛍️"], ama: 1 },
-      org: { n: "ORGÁNICO", i: "🍎", c: "#8B5E3C", it: ["🍌", "🍎", "🥕", "🥚"] },
-      vid: { n: "VIDRIO",   i: "🍾", c: "#22A866", it: ["🍾", "🫙", "🍷"] },
-      nor: { n: "BASURA",   i: "🗑️", c: "#6B6880", it: ["🩹", "🧻", "🧽", "🍬"] }
+      pap: { n: "PAPEL",    i: "📄", c: "#2F80ED", it: ["📰", "✉️", "📦"] },
+      pla: { n: "PLÁSTICO", i: "🧴", c: "#FFC21A", it: ["🥤", "🍼"], ama: 1 },
+      org: { n: "ORGÁNICO", i: "🍎", c: "#8B5E3C", it: ["🍌", "🥕", "🥚", "🍂"] },
+      vid: { n: "VIDRIO",   i: "🍾", c: "#22A866", it: ["🍶", "🥛"] },
+      nor: { n: "BASURA",   i: "🗑️", c: "#6B6880", it: ["🩹", "🧻", "🧽"] }
     },
-    /* el ciclo que se ve al ganar el último nivel */
-    ciclo: ["🧴", "🗑️", "🏭", "🧴"],
+    /* el ciclo que se ve al ganar el último nivel: botella → reciclado → camión → fábrica → vaso nuevo */
+    ciclo: ["🧴", "♻️", "🚛", "🏭", "🥤"],
     /* lo que se puede agregar a la plaza (modo libre) */
     plaza: ["🌳", "⛲", "🌷", "🌻", "🌲", "🦋", "🐦", "🎈"]
   },
