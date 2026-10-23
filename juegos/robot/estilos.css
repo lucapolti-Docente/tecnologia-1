@@ -13,9 +13,16 @@
 .arrows .loop{background:#8E5BE8;box-shadow:0 6px 0 #6A3FC0}
 .seq b{position:relative}
 .seq b sup{position:absolute;right:-8px;top:-10px;background:var(--ink);color:#fff;border-radius:10px;font-size:max(14px,calc(var(--btn)*.22));padding:1px 6px;line-height:1.2;font-family:var(--display)}
+/* cada bloque muestra que se puede tocar para sacarlo */
+.seq b{cursor:pointer}
+.seq b::after{content:"✕";position:absolute;left:-7px;bottom:-7px;width:20px;height:20px;border-radius:50%;background:#fff;color:var(--bad);font-size:13px;line-height:20px;text-align:center;box-shadow:0 1px 3px rgba(35,32,74,.4);font-family:var(--display)}
+.seq b.now::after{display:none}
+/* donde chocó el robot */
+.cell.choque{background:#FFD2D3;position:relative}
+.cell.choque::after{content:"💥";position:absolute;font-size:calc(var(--cell)*.5);right:-6%;top:-12%;animation:pop .4s}
 
 @media (max-width:700px),(max-height:500px){
-  .robot{height:auto}
+  .robot{height:auto;padding-bottom:90px} /* que el 🏠 no tape ▶ IR */
   .arrows{grid-template-columns:repeat(3,72px);grid-template-rows:repeat(3,72px)}
   .arrows button{font-size:38px}
   .seq b{width:44px;height:44px;font-size:26px}

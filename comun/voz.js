@@ -23,5 +23,6 @@ try{window.speechSynthesis&&speechSynthesis.getVoices()}catch(e){}
 let avisoSinVoz=false;
 const sayQuiet=t=>{try{const sy=window.speechSynthesis;
   if(!avisoSinVoz)setTimeout(()=>{if(!avisoSinVoz&&!vocesEs().length){avisoSinVoz=true;toast(TEXTOS.voz.sinVoz)}},1500);
-  if(!sy)return;sy.cancel();const u=new SpeechSynthesisUtterance(t.toLowerCase());u.lang="es-AR";
+  if(!sy)return;sy.cancel();t=t.replace(/[^\p{L}\p{N}\s¡!¿?,.]/gu,"").trim(); /* sin emojis: solo las palabras */
+  const u=new SpeechSynthesisUtterance(t.toLowerCase());u.lang="es-AR";
   const v=vocesEs()[0];if(v)u.voice=v;u.rate=.9;sy.speak(u)}catch(e){}};

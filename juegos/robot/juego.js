@@ -18,10 +18,11 @@ function robot(){
   const L=free?{r:freeSize,c:freeSize,s:[0,0],g:[freeSize-1,freeSize-1],k:[]}:RLV[lvl];
   let st=[...L.s],goal=[...L.g],rocks=new Set(L.k.map(k=>k.join(","))),pos=[...st],running=false,tool="k";
   let seq=L.bug?L.bug.map(([d,n])=>({d,n})):[];
-  const a=area();const btn=Math.max(64,Math.min(104,a.h/(free?6.2:5.4)));
-  const side=btn*3+20+130+28;
-  const cell=a.n?Math.floor(Math.min((a.w-24)/L.c-6,80)):Math.floor(Math.min((a.w-side-30)/L.c,(a.h-20)/L.r)-6);
-  stage.innerHTML=`<div class="robot" style="--cell:${Math.max(36,cell)}px;--btn:${btn}px">
+  const medidas=()=>{const a=area();const btn=Math.max(64,Math.min(104,a.h/(free?6.2:5.4)));
+    const side=btn*3+20+130+28;
+    const cell=a.n?Math.floor(Math.min((a.w-24)/L.c-6,80)):Math.floor(Math.min((a.w-side-30)/L.c,(a.h-20)/L.r)-6);
+    return`--cell:${Math.max(36,cell)}px;--btn:${btn}px`};
+  stage.innerHTML=`<div class="robot" style="${medidas()}">
     <div class="grid ${free?'editing':''}" id="rg" style="grid-template-columns:repeat(${L.c},auto)"></div>
     <div class="ctrl">
       ${free?`<div class="tools" id="tools"><button data-t="r" aria-label="${T.robot}">${E.robot}</button><button data-t="g" aria-label="${T.meta}">${E.meta}</button><button data-t="k" aria-label="${T.obstaculo}">${E.obstaculo}</button></div>`:""}
@@ -30,7 +31,7 @@ function robot(){
         <button data-d="L">←</button><button class="loop" id="lp" aria-label="${T.repetir}">🔁</button><button data-d="R">→</button>
         <span></span><button data-d="D">↓</button><span></span></div>
       <div class="seq" id="seq"></div>
-      <div class="go"><button class="big-btn" id="del" aria-label="${C.borrar}">↺</button><button class="big-btn run" id="run">${T.ir}</button></div>
+      <div class="go"><button class="big-btn" id="del" aria-label="${C.borrarTodo}">🗑️</button><button class="big-btn run" id="run">${T.ir}</button></div>
     </div></div>`;
   const same=(p,r,c)=>p[0]===r&&p[1]===c;
   function draw(){
@@ -53,28 +54,34 @@ function robot(){
       beep(600,.05);pos=[...st];draw();
     };
   }
-  stage.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{if(running||seq.length>=16)return;seq.push({d:b.dataset.d,n:1});beep(500+seq.length*25,.08);drawSeq()});
-  $("#lp").onclick=()=>{if(running)return;const s=seq[seq.length-1];if(!s){shakeEl($("#seq"));return}if(s.n<9){s.n++;beep(600+s.n*40,.08)}drawSeq(seq.length-1);later(()=>drawSeq(),250)};
-  $("#seq").onclick=e=>{const b=e.target.closest("b");if(!b||running)return;seq.splice(+b.dataset.i,1);drawSeq()};
+  stage.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{if(running)return;if(seq.length>=16){shakeEl($("#seq"));return}seq.push({d:b.dataset.d,n:1});beep(500+seq.length*25,.08);drawSeq()});
+  $("#lp").onclick=()=>{if(running)return;const s=seq[seq.length-1];if(!s||s.n>=9){shakeEl($("#seq"));return}s.n++;beep(600+s.n*40,.08);drawSeq(seq.length-1);later(()=>drawSeq(),250)};
+  $("#seq").onclick=e=>{const b=e.target.closest("b");if(!b||running)return;seq.splice(+b.dataset.i,1);beep(300,.06);drawSeq()};
   $("#del").onclick=()=>{if(running)return;seq=[];reset()};
+  if(L.bug)sayQuiet(T.arreglar);
   $("#run").onclick=()=>{
     if(running||!seq.length)return;running=true;pos=[...st];draw();
     const steps=[];seq.forEach((s,i)=>{for(let k=0;k<s.n;k++)steps.push([s.d,i])});
     let i=0;
-    const fail=()=>{bad();$("#rg").classList.add("shake");later(()=>{$("#rg").classList.remove("shake");reset()},600)};
+    /* choque o programa que no termina en la estrella: 💥 donde falló, el bloque queda marcado un rato */
+    const fail=(r,c)=>{bad();const el=$(`#rg .cell[data-r="${r}"][data-c="${c}"]`);if(el)el.classList.add("choque");
+      $("#rg").classList.add("shake");later(()=>{$("#rg").classList.remove("shake");reset()},1300)};
     const step=()=>{
-      if(i>=steps.length){fail();return}
       drawSeq(steps[i][1]);const[dr,dc]=DIR[steps[i][0]];const n=[pos[0]+dr,pos[1]+dc];
-      if(n[0]<0||n[1]<0||n[0]>=L.r||n[1]>=L.c||rocks.has(n.join(","))){fail();return}
+      if(n[0]<0||n[1]<0||n[0]>=L.r||n[1]>=L.c||rocks.has(n.join(","))){
+        const fuera=n[0]<0||n[1]<0||n[0]>=L.r||n[1]>=L.c;fail(fuera?pos[0]:n[0],fuera?pos[1]:n[1]);return}
       pos=n;draw();beep(700,.06);i++;
-      if(same(pos,goal[0],goal[1])){
-        if(free){later(()=>win(reset),300);return}
-        const best=minBlocks(L,rocks,st,goal),perfect=seq.length<=best;
-        later(()=>win(null,perfect?{title:T.perfecto,star:T.estrellasPerfecto}:{star:T.estrellasBien,note:fmt(best>1?T.sePuede:T.sePuedeUno,{n:best})}),300);return}
-      later(step,420);
+      if(i<steps.length){later(step,420);return}
+      /* se gana solo si el programa TERMINA en la estrella (si pasa por encima y sigue, no vale) */
+      if(!same(pos,goal[0],goal[1])){later(()=>fail(pos[0],pos[1]),300);return}
+      if(free){later(()=>win(reset),300);return}
+      const best=minBlocks(L,rocks,st,goal),perfect=seq.length<=best,nota=fmt(best>1?T.sePuede:T.sePuedeUno,{n:best});
+      if(!perfect)later(()=>sayQuiet(nota),900);
+      later(()=>win(null,perfect?{title:T.perfecto,star:T.estrellasPerfecto}:{star:T.estrellasBien,note:nota}),300);
     };
     later(step,250);
   };
+  alCambiarTamano(()=>{stage.querySelector(".robot").setAttribute("style",medidas())});
 }
 
 registrar("robot",{iniciar:robot,niveles:()=>RLV,libre:true});
