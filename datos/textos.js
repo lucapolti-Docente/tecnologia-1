@@ -113,6 +113,7 @@ DATOS.textos = {
   },
 
   laberinto: {
+    interruptor: "¡PRENDÉ EL INTERRUPTOR!",   // voz en el primer nivel con interruptor
     pared: "PARED", pila: "PILA", lamparita: "LAMPARITA", cable: "CABLE"   // etiquetas del modo libre
   },
 
