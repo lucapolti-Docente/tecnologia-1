@@ -5,4 +5,4 @@
 .sitpic .ans{width:1.2em;height:1.2em;border-radius:24px;background:var(--bg);display:grid;place-items:center;font-size:.8em}
 .sitpic .ans.got{background:#C8F2D8;animation:pop .5s}
 .sittxt{display:flex;align-items:center;gap:12px;font-weight:800;font-size:clamp(20px,3.4vh,34px);text-align:center}
-.sittxt button{width:52px;height:52px;border-radius:50%;background:#D97706;color:#fff;font-size:26px;flex:none}
+.sittxt button{width:64px;height:64px;border-radius:50%;background:#D97706;color:#fff;font-size:26px;flex:none}
